@@ -57,7 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String item = parent.getAdapter().getItem(position).toString();
         String pos = Integer.toString(position);
 
-        Toast.makeText(this, item + " @ " + pos, Toast.LENGTH_SHORT).show();
+        Snackbar.make(view, item + " @ " + pos, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+
+        //Toast.makeText(this, item + " @ " + pos, Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, FindMe.class);
         startActivity(intent);

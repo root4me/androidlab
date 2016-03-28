@@ -27,6 +27,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.root4.locatemelab.MainActivity" />
         </activity>
+
+        <service
+            android:name=".FindMeIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
