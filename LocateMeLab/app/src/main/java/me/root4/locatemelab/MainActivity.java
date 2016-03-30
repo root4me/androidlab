@@ -1,21 +1,28 @@
 package me.root4.locatemelab;
 
-import android.content.Intent;
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
+LocationListener{
+
+    private static final String TAG = "Main_Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,50 +31,96 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ListView lv = (ListView) findViewById(R.id.main_list_view);
-        lv.setAdapter(new ArrayAdapter<String>(this,R.layout.main_list_item,new String[] {"Current Location","Plot in Map"}));
-        lv.setOnItemClickListener(this);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+        /*
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+       */
 
+                    // Get location info
+                    GetLocationInfo(MainActivity.this);
+                }
+            });
+        }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+    // Location service
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void GetLocationInfo(Context context) {
+        Log.d(TAG, "Inside GetLocationInfo");
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        // Create instance of GoogleApiClient to make connection to google play service
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(context)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
         }
 
-        return super.onOptionsItemSelected(item);
+        // create location request
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(5000);
+        mLocationRequest.setFastestInterval(1000);
+
+        mGoogleApiClient.connect();
+
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String item = parent.getAdapter().getItem(position).toString();
-        String pos = Integer.toString(position);
+    public void onConnected(Bundle bundle) {
+        Log.d(TAG, "Google play service connected");
 
-        Snackbar.make(view, item + " @ " + pos, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+/*
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1
+                    );
 
-        //Toast.makeText(this, item + " @ " + pos, Toast.LENGTH_SHORT).show();
+            return;
+        }
+*/
+        // try to fetch last known location
+        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
-        Intent intent = new Intent(this, FindMe.class);
-        startActivity(intent);
+        if (location == null)
+        {
+            Log.d(TAG, "Location not found");
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
+        else
+        {
+            Log.d(TAG, "Location found");
+        }
     }
 
     @Override
-    public void onClick(View v) {
-        // Do nothing
+    public void onConnectionSuspended(int i) {
+
+        Log.d(TAG, "Google play service suspended");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.d(TAG, "Google play service concoction failed");
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d(TAG,"Location found");
     }
 }
