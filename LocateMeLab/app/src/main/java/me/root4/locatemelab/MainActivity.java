@@ -99,8 +99,8 @@ LocationListener{
 
     private void displayLocationInfo(Location location)
     {
-        ((TextView) findViewById(R.id.lblLatitude)).setText(String.valueOf(location.getLatitude()));
-        ((TextView) findViewById(R.id.lblLongitude)).setText(String.valueOf(location.getLongitude()));
+       ((TextView) findViewById(R.id.lblLatitude)).setText(String.valueOf(location.getLatitude()));
+       ((TextView) findViewById(R.id.lblLongitude)).setText(String.valueOf(location.getLongitude()));
         ((TextView) findViewById(R.id.lblBearing)).setText(String.valueOf(location.getBearing()));
         ((TextView) findViewById(R.id.lblAltitude)).setText(String.valueOf(location.getAltitude()));
     }
@@ -146,6 +146,7 @@ LocationListener{
         Log.d(TAG,"Location found in location update");
         // stop location update
 
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
         displayLocationInfo(location);
     }
 }
