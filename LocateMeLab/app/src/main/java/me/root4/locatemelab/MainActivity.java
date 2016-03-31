@@ -1,17 +1,15 @@
 package me.root4.locatemelab;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -62,6 +60,9 @@ LocationListener{
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
+
+            mGoogleApiClient.connect();
+
         }
 
         // create location request
@@ -70,8 +71,38 @@ LocationListener{
         mLocationRequest.setInterval(5000);
         mLocationRequest.setFastestInterval(1000);
 
-        mGoogleApiClient.connect();
+        // if connected get location
+        if (mGoogleApiClient.isConnected())
+        {
+            getLocation();
+        }
 
+    }
+
+    private void getLocation()
+    {
+        // try to fetch last known location
+        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+        if (location == null)
+        {
+            Log.d(TAG, "Location not found");
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
+        else
+        {
+            Log.d(TAG, "Location found in getLocation");
+            Toast.makeText(this, "longitude @ " + location.getLongitude() + " latitude @ " + location.getLatitude(), Toast.LENGTH_LONG).show();
+            displayLocationInfo(location);
+        }
+    }
+
+    private void displayLocationInfo(Location location)
+    {
+        ((TextView) findViewById(R.id.lblLatitude)).setText(String.valueOf(location.getLatitude()));
+        ((TextView) findViewById(R.id.lblLongitude)).setText(String.valueOf(location.getLongitude()));
+        ((TextView) findViewById(R.id.lblBearing)).setText(String.valueOf(location.getBearing()));
+        ((TextView) findViewById(R.id.lblAltitude)).setText(String.valueOf(location.getAltitude()));
     }
 
     @Override
@@ -94,18 +125,8 @@ LocationListener{
             return;
         }
 */
-        // try to fetch last known location
-        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        getLocation();
 
-        if (location == null)
-        {
-            Log.d(TAG, "Location not found");
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        }
-        else
-        {
-            Log.d(TAG, "Location found");
-        }
     }
 
     @Override
@@ -121,6 +142,10 @@ LocationListener{
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.d(TAG,"Location found");
+
+        Log.d(TAG,"Location found in location update");
+        // stop location update
+
+        displayLocationInfo(location);
     }
 }

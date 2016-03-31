@@ -12,4 +12,56 @@
     tools:context="me.root4.locatemelab.MainActivity"
     tools:showIn="@layout/activity_main">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Latitude"
+        android:id="@+id/lblLatitude"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Longitude"
+        android:id="@+id/lblLongitude"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/lblLatitude"
+        android:layout_alignLeft="@+id/lblLatitude"
+        android:layout_alignStart="@+id/lblLatitude" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Altitude"
+        android:id="@+id/lblAltitude"
+        android:layout_below="@+id/lblLongitude"
+        android:layout_alignLeft="@+id/lblLongitude"
+        android:layout_alignStart="@+id/lblLongitude"
+        android:layout_marginTop="38dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Bearing"
+        android:id="@+id/lblBearing"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/lblAltitude"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Time"
+        android:id="@+id/lblTime"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/lblBearing"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
