@@ -14,7 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LocationManager.LocationCallback {
@@ -32,8 +33,12 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Looking up location", Snackbar.LENGTH_LONG)
+                        .show();
+
+                LocationManager lm = new LocationManager(MainActivity.this, MainActivity.this);
+
+
             }
         });
 
@@ -86,9 +91,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_locateH) {
-            // Locate with accuracy
-            Toast.makeText(this,"Locate with Accuracy = high",Toast.LENGTH_SHORT).show();
-            // use location manager class to fetch the location
+
+            LocationManager lm = new LocationManager(this, this);
+            //lm.GetLocation();
+
+            Snackbar snackbar = Snackbar
+                    .make((RelativeLayout) findViewById(R.id.activity_main_content), "Looking up location", Snackbar.LENGTH_LONG);
+
+            snackbar.show();
 
         } else if (id == R.id.nav_locateL) {
 
@@ -104,7 +114,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void handleLocation(Location location) {
-        Log.i(TAG,"location found");
+    public void onLocationFound(Location location) {
+        Log.i(TAG,"Location found " + String.valueOf(location.getLatitude()));
+
+        Snackbar
+                .make((RelativeLayout) findViewById(R.id.activity_main_content), "Location found " + String.valueOf(location.getLatitude()), Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onLocationStatus(String message) {
+
+        Snackbar
+                .make((RelativeLayout) findViewById(R.id.activity_main_content), message, Snackbar.LENGTH_LONG).show();
+
     }
 }

@@ -14,9 +14,8 @@ import com.google.android.gms.location.LocationServices;
 /**
  * Created by harish on 3/31/16.
  *
- * Manage location fetching and returns a location object
+ * Manage location fetching
  */
-
 
 
 public class LocationManager implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
@@ -27,17 +26,23 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
 
     private static final String TAG = "LocationManager";
 
-    public abstract interface LocationCallback {
-        public void handleLocation(Location location);
+    public interface LocationCallback {
+        void onLocationFound(Location location);
+        void onLocationStatus(String message);
     }
 
-    private LocationCallback mLocationCallback;
 
-    public LocationManager(Context context) {
+    private LocationCallback mLocationCallback;
+    private Context mContext;
+
+    public LocationManager(Context context, LocationCallback callback) {
+        mContext = context;
+        mLocationCallback = callback;
 
         // Create instance of GoogleApiClient to make connection to google play service
         if (mGoogleApiClient == null) {
-            mGoogleApiClient = new GoogleApiClient.Builder(context)
+            Log.d(TAG, "mGoogleApiClient null");
+            mGoogleApiClient = new GoogleApiClient.Builder(mContext)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
@@ -54,20 +59,18 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
         mLocationRequest.setFastestInterval(1000);
 
         // if connected get location
-        if (mGoogleApiClient.isConnected())
-        {
+        if (mGoogleApiClient.isConnected()) {
+            Log.d(TAG, "mGoogleApiClient connected in LocationManager ");
             GetLocation();
-        }
-        else
-        {
+        } else {
             mGoogleApiClient.connect();
         }
 
     }
 
-    private void GetLocation()
-    {
-        // try to fetch last known location
+    public void GetLocation() {
+
+
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
         if (location == null)
@@ -75,13 +78,14 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
             Log.d(TAG, "Location not found");
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
             // raise a call back to notify request location update
+            mLocationCallback.onLocationStatus("Waiting on Location update");
         }
         else
         {
             Log.d(TAG, "Location found in getLocation");
          //   displayLocationInfo(location);
             //raise a callback to notify loaction data
-            mLocationCallback.handleLocation(location);
+            mLocationCallback.onLocationFound(location);
         }
 
     }
@@ -90,7 +94,7 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     public void onConnected(Bundle bundle) {
         Log.d(TAG, "Google play service connected");
 
-        GetLocation();
+         GetLocation();
     }
 
     @Override
@@ -101,8 +105,9 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     @Override
     public void onLocationChanged(Location location) {
 
-        mLocationCallback.handleLocation(location);
+        mLocationCallback.onLocationFound(location);
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+        Log.d(TAG, "Not going to look for any more location update");
 
     }
 

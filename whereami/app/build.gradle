@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "me.root4.whereami"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion 16
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
