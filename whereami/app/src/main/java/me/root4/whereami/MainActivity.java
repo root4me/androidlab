@@ -1,5 +1,6 @@
 package me.root4.whereami;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,10 +30,12 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "Main_Activity";
 
-
+    // Recycler view
     private List<NameValue> nameValueList = new ArrayList<>();
     private RecyclerView recyclerView;
     private NameValueAdapter mAdapter;
+
+    boolean mPlot = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
-        displayLocationInfo(null);
+        //displayLocationInfo(null);
 
     }
 
@@ -127,6 +131,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_plot) {
 
+            mPlot = true;
+            LocationManager lm = new LocationManager(this, this);
+
         } else if (id == R.id.nav_send) {
 
         }
@@ -140,8 +147,17 @@ public class MainActivity extends AppCompatActivity
     public void onLocationFound(Location location) {
         Log.i(TAG,"Location found " + String.valueOf(location.getLatitude()));
 
-        Snackbar
-                .make((RelativeLayout) findViewById(R.id.activity_main_content), "Location found " + String.valueOf(location.getLatitude()), Snackbar.LENGTH_LONG).show();
+        Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Location found " + String.valueOf(location.getLatitude()), Snackbar.LENGTH_LONG).show();
+        displayLocationInfo(location);
+
+        if (mPlot == true)
+        {
+            // navigate to plot page
+            Intent intent = new Intent(this, MapsActivity.class);
+            intent.putExtra("EXTRA_LATITUDE", location.getLatitude());
+            intent.putExtra("EXTRA_LONGITUDE", location.getLongitude());
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -154,29 +170,33 @@ public class MainActivity extends AppCompatActivity
 
     private void displayLocationInfo(Location location) {
 
-        NameValue nameValue = new NameValue("Latitude",  "0");
+        NameValue nameValue = new NameValue("Latitude",  String.valueOf(location.getLatitude()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("Longitude", "0");
+        nameValue = new NameValue("Longitude", String.valueOf(location.getLongitude()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("Accuracy",  "0");
+        nameValue = new NameValue("Altitude",  String.valueOf(location.getAltitude()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("Bearing", "0");
+        nameValue = new NameValue("Accuracy",  String.valueOf(location.getAccuracy()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("Ellapsed real time nanos",  "0");
+        nameValue = new NameValue("Bearing", String.valueOf(location.getBearing()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("Provider", "0");
+        nameValue = new NameValue("Ellapsed ",  String.valueOf(location.getElapsedRealtimeNanos()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("speed", "0");
+        nameValue = new NameValue("Provider", String.valueOf(location.getProvider()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("Time", "0");
+        nameValue = new NameValue("speed", String.valueOf(location.getSpeed()));
         nameValueList.add(nameValue);
+
+        nameValue = new NameValue("Time", String.valueOf(DateFormat.format("MM/dd/yyyy hh:mm:ss", location.getTime())));
+        nameValueList.add(nameValue);
+
 
         mAdapter.notifyDataSetChanged();
     }
