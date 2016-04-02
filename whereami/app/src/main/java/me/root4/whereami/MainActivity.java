@@ -4,6 +4,9 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,11 +19,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LocationManager.LocationCallback {
 
     private static final String TAG = "Main_Activity";
+
+
+    private List<NameValue> nameValueList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private NameValueAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +61,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Recycler view
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        mAdapter = new NameValueAdapter(nameValueList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+
+        displayLocationInfo(null);
+
     }
 
     @Override
@@ -127,5 +150,34 @@ public class MainActivity extends AppCompatActivity
         Snackbar
                 .make((RelativeLayout) findViewById(R.id.activity_main_content), message, Snackbar.LENGTH_LONG).show();
 
+    }
+
+    private void displayLocationInfo(Location location) {
+
+        NameValue nameValue = new NameValue("Latitude",  "0");
+        nameValueList.add(nameValue);
+
+        nameValue = new NameValue("Longitude", "0");
+        nameValueList.add(nameValue);
+
+        nameValue = new NameValue("Accuracy",  "0");
+        nameValueList.add(nameValue);
+
+        nameValue = new NameValue("Bearing", "0");
+        nameValueList.add(nameValue);
+
+        nameValue = new NameValue("Ellapsed real time nanos",  "0");
+        nameValueList.add(nameValue);
+
+        nameValue = new NameValue("Provider", "0");
+        nameValueList.add(nameValue);
+
+        nameValue = new NameValue("speed", "0");
+        nameValueList.add(nameValue);
+
+        nameValue = new NameValue("Time", "0");
+        nameValueList.add(nameValue);
+
+        mAdapter.notifyDataSetChanged();
     }
 }
