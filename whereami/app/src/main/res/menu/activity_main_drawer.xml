@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_locateH"
-            android:icon="@android:drawable/ic_menu_mylocation"
+            android:icon="@android:drawable/ic_menu_compass"
             android:title="Locate (high accuracy)" />
         <item
             android:id="@+id/nav_locateL"
@@ -12,8 +12,12 @@
             android:title="Locate (low accuracy)" />
         <item
             android:id="@+id/nav_plot"
-            android:icon="@android:drawable/ic_menu_myplaces"
+            android:icon="@android:drawable/ic_menu_mapmode"
             android:title="Plot" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Location History" />
     </group>
 
     <item android:title="Communicate">

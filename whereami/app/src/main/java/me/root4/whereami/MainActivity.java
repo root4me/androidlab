@@ -122,20 +122,22 @@ public class MainActivity extends AppCompatActivity
             LocationManager lm = new LocationManager(this, this);
             //lm.GetLocation();
 
-            Snackbar snackbar = Snackbar
-                    .make((RelativeLayout) findViewById(R.id.activity_main_content), "Looking up location", Snackbar.LENGTH_LONG);
-
-            snackbar.show();
+            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Looking up location", Snackbar.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_locateL) {
-
+            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
         } else if (id == R.id.nav_plot) {
 
             mPlot = true;
             LocationManager lm = new LocationManager(this, this);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_history) {
+            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
 
+            startActivity(new Intent(this,LocationHistoryActivity.class));
+        }
+        if (id == R.id.nav_send) {
+            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -158,6 +160,12 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra("EXTRA_LONGITUDE", location.getLongitude());
             startActivity(intent);
         }
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.addLocation(new me.root4.whereami.Location(location.getLatitude(), location.getLongitude(), location.getTime()));
+        db.getLocation(1);
+
+        db.getAllLocations();
     }
 
     @Override

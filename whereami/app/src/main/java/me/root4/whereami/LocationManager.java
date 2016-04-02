@@ -15,6 +15,18 @@ import com.google.android.gms.location.LocationServices;
  * Created by harish on 3/31/16.
  *
  * Manage location fetching
+ *
+ * Require permission :
+ *  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+ *  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+ *
+ *  Dependency in build.gradle
+ *     compile 'com.google.android.gms:play-services:8.4.0'
+ *      targetSdkVersion 22
+ *          While running on emulator, doesn't seem to work if compiled with targetsdk 23
+ *
+ *  Device must have Settings / Location : on
+ *
  */
 
 
