@@ -18,17 +18,21 @@ public class LocationHistoryViewAdapter extends RecyclerView.Adapter<LocationHis
 
     public class LocationViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView attrName, attrValue;
+        public TextView lat;
+        public TextView lng;
+        public TextView capturedTime;
+        public TextView createdTime;
 
         public LocationViewHolder(View v) {
             super(v);
-            attrName = (TextView) v.findViewById(R.id.loc_lat);
-            attrValue = (TextView) v.findViewById(R.id.loc_lng);
+            lat = (TextView) v.findViewById(R.id.loc_lat);
+            lng = (TextView) v.findViewById(R.id.loc_lng);
+            capturedTime = (TextView) v.findViewById(R.id.loc_capturedTime);
+            createdTime = (TextView) v.findViewById(R.id.loc_createdTime);
         }
     }
 
     private List<Location> mDataset;
-    // Provide a suitable constructor (depends on the kind of dataset)
     public LocationHistoryViewAdapter(List<Location> myDataset) {
         mDataset = myDataset;
     }
@@ -50,8 +54,11 @@ public class LocationHistoryViewAdapter extends RecyclerView.Adapter<LocationHis
     @Override
     public void onBindViewHolder(LocationViewHolder holder, int position) {
 
-        holder.attrName.setText((String.valueOf (((Location) mDataset.get(position)).getLat())));
-        holder.attrValue.setText((String.valueOf(((Location) mDataset.get(position)).getLng())));
+        holder.lat.setText((String.valueOf (((Location) mDataset.get(position)).getLat())));
+        holder.lng.setText((String.valueOf(((Location) mDataset.get(position)).getLng())));
+        holder.capturedTime.setText((String.valueOf (((Location) mDataset.get(position)).getCaptureDate())));
+        holder.createdTime.setText((String.valueOf(((Location) mDataset.get(position)).getCreateDate())));
+
         Log.d("VIEWADAPTER", "inside onBindViewHolder ");
     }
 
