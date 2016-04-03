@@ -45,17 +45,18 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Looking up location", Snackbar.LENGTH_LONG)
-                        .show();
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Snackbar.make(view, "Looking up location", Snackbar.LENGTH_LONG)
+                            .show();
 
-                LocationManager lm = new LocationManager(MainActivity.this, MainActivity.this);
+                    LocationManager lm = new LocationManager(MainActivity.this, MainActivity.this);
 
-
-            }
-        });
+                }
+            });
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
 
-        DatabaseHandler db = new DatabaseHandler(this);
+        DatabaseHelper db = new DatabaseHelper(this);
         db.addLocation(new me.root4.whereami.Location(location.getLatitude(), location.getLongitude(), location.getTime()));
         db.getLocation(1);
 

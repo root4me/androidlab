@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.util.List;
+
 public class LocationHistoryActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
@@ -45,7 +47,10 @@ public class LocationHistoryActivity extends AppCompatActivity {
         //set adapter and send data set
         String[] myDataset = {"a" , "b" , "c" , "d" ,"e", "f", "g", "h", "i", "j", "k"};
 
-        mAdapter = new LocationHistoryViewAdapter(myDataset);
+        DatabaseHelper db = new DatabaseHelper(this);
+        List<Location> locations = db.getAllLocations();
+
+        mAdapter = new LocationHistoryViewAdapter(locations);
         mRecyclerView.setAdapter(mAdapter);
     }
 

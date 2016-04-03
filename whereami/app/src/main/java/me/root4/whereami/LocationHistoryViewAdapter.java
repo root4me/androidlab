@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by harish on 4/2/16.
  */
@@ -25,9 +27,9 @@ public class LocationHistoryViewAdapter extends RecyclerView.Adapter<LocationHis
         }
     }
 
-    private String[] mDataset;
+    private List<Location> mDataset;
     // Provide a suitable constructor (depends on the kind of dataset)
-    public LocationHistoryViewAdapter(String[] myDataset) {
+    public LocationHistoryViewAdapter(List<Location> myDataset) {
         mDataset = myDataset;
     }
 
@@ -47,14 +49,16 @@ public class LocationHistoryViewAdapter extends RecyclerView.Adapter<LocationHis
 
     @Override
     public void onBindViewHolder(LocationViewHolder holder, int position) {
-        holder.attrName.setText(mDataset[position]);
+
+        holder.attrName.setText((String.valueOf (((Location) mDataset.get(position)).getLat())));
+        holder.attrValue.setText((String.valueOf(((Location) mDataset.get(position)).getLng())));
         Log.d("VIEWADAPTER", "inside onBindViewHolder ");
     }
 
     @Override
     public int getItemCount() {
         Log.d("VIEWADAPTER", "inside getItemCount ");
-        return mDataset.length;
+        return mDataset.size();
     }
 
 
