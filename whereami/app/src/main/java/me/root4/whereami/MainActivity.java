@@ -3,6 +3,7 @@ package me.root4.whereami;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -153,6 +154,9 @@ public class MainActivity extends AppCompatActivity
         Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Location found " + String.valueOf(location.getLatitude()), Snackbar.LENGTH_LONG).show();
         displayLocationInfo(location);
 
+        // hide fab
+        ((FloatingActionButton) findViewById(R.id.fab)).setVisibility(View.INVISIBLE);
+
         if (mPlot == true)
         {
             // navigate to plot page
@@ -162,18 +166,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
 
-        DatabaseHelper db = new DatabaseHelper(this);
-        db.addLocation(new me.root4.whereami.Location(location.getLatitude(), location.getLongitude(), location.getTime()));
-        db.getLocation(1);
-
-        db.getAllLocations();
     }
 
     @Override
     public void onLocationStatus(String message) {
 
-        Snackbar
-                .make((RelativeLayout) findViewById(R.id.activity_main_content), message, Snackbar.LENGTH_LONG).show();
+        Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), message, Snackbar.LENGTH_LONG).show();
 
     }
 
@@ -194,7 +192,7 @@ public class MainActivity extends AppCompatActivity
         nameValue = new NameValue("Bearing", String.valueOf(location.getBearing()));
         nameValueList.add(nameValue);
 
-        nameValue = new NameValue("Ellapsed ",  String.valueOf(location.getElapsedRealtimeNanos()));
+        nameValue = new NameValue("Ellapsed ",  String.valueOf((SystemClock.elapsedRealtimeNanos() - location.getElapsedRealtimeNanos())/1000000));
         nameValueList.add(nameValue);
 
         nameValue = new NameValue("Provider", String.valueOf(location.getProvider()));
