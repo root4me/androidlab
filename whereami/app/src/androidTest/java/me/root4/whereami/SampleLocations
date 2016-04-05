@@ -7,3 +7,10 @@
 41.869927, -87.883230
 
 04-03 00:06:16.800: E/Google Maps Android API(2410): 	Android Application (<cert_fingerprint>;<package_name>): 63:10:58:B4:0B:75:58:D4:E5:24:D8:CB:88:DE:A1:7B:DD:25:2F:6C;me.root4.whereami
+
+Clean up Main activity
+
+Hide locate icon once the location is obtained
+Do not add more to the recycler view if new location is received
+
+Clean up location manager

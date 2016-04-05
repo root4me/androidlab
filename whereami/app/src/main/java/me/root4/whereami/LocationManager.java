@@ -37,6 +37,10 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     private LocationRequest mLocationRequest;
 
     private static final String TAG = "LocationManager";
+    private boolean mwWaitingOnCallback = false;
+
+    private LocationCallback mLocationCallback;
+    private Context mContext;
 
     public interface LocationCallback {
         void onLocationFound(Location location);
@@ -44,8 +48,6 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     }
 
 
-    private LocationCallback mLocationCallback;
-    private Context mContext;
 
     public LocationManager(Context context, LocationCallback callback) {
         mContext = context;
@@ -80,22 +82,29 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
 
     }
 
+    /**
+     * Attempt to get the location. If location is not available, fire a requestLocation update.
+     * Even if a location is found, this does not return the location and instead raises onLocationFound event
+     */
     public void GetLocation() {
-
 
         Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
 
         if (location == null)
         {
             Log.d(TAG, "Location not found");
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-            // raise a call back to notify request location update
-            mLocationCallback.onLocationStatus("Waiting on Location update");
+            if(!(mwWaitingOnCallback)) {
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                mwWaitingOnCallback = true;
+                // raise a call back to notify request location update
+                mLocationCallback.onLocationStatus("Waiting on Location update");
+            }
         }
         else
         {
             Log.d(TAG, "Location found in getLocation");
-         //   displayLocationInfo(location);
+            //   displayLocationInfo(location);
+            mwWaitingOnCallback = false;
             //raise a callback to notify loaction data
             mLocationCallback.onLocationFound(location);
         }
@@ -106,7 +115,7 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     public void onConnected(Bundle bundle) {
         Log.d(TAG, "Google play service connected");
 
-         GetLocation();
+        GetLocation();
     }
 
     @Override

@@ -25,11 +25,13 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.support.design.widget.Snackbar.LENGTH_INDEFINITE;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LocationManager.LocationCallback {
 
-    private static final String TAG = "Main_Activity";
+    private static final String TAG = "MainActivity";
 
     // Recycler view
     private List<NameValue> nameValueList = new ArrayList<>();
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Snackbar.make(view, "Looking up location", Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "Looking up location", LENGTH_INDEFINITE)
                             .show();
 
                     LocationManager lm = new LocationManager(MainActivity.this, MainActivity.this);
@@ -139,7 +141,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this,LocationHistoryActivity.class));
         }
         if (id == R.id.nav_send) {
-            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
+//            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
+
+            DatabaseHelper db = new DatabaseHelper(this);
+            db.deleteAllLocations();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -147,15 +153,20 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+    // Call back from LocationManager
     @Override
     public void onLocationFound(Location location) {
-        Log.i(TAG,"Location found " + String.valueOf(location.getLatitude()));
+        Log.i(TAG, "Location found " + String.valueOf(location.getLatitude()));
 
-        Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Location found " + String.valueOf(location.getLatitude()), Snackbar.LENGTH_LONG).show();
-        displayLocationInfo(location);
+        Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Location found ", Snackbar.LENGTH_LONG).show();
 
         // hide fab
         ((FloatingActionButton) findViewById(R.id.fab)).setVisibility(View.INVISIBLE);
+
+        DatabaseHelper db = new DatabaseHelper(this);
+        me.root4.whereami.Location loc = new me.root4.whereami.Location(location.getLatitude(),location.getLongitude(),location.getTime());
+        db.addLocation(loc);
 
         if (mPlot == true)
         {
@@ -163,7 +174,12 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, MapsActivity.class);
             intent.putExtra("EXTRA_LATITUDE", location.getLatitude());
             intent.putExtra("EXTRA_LONGITUDE", location.getLongitude());
+            mPlot = false;
             startActivity(intent);
+        }
+        else
+        {
+            displayLocationInfo(location);
         }
 
     }
@@ -171,11 +187,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLocationStatus(String message) {
 
-        Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), message, Snackbar.LENGTH_LONG).show();
+        if ((RelativeLayout) findViewById(R.id.activity_main_content) != null) {
+            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), message, LENGTH_INDEFINITE).show();
+        }
 
     }
 
     private void displayLocationInfo(Location location) {
+
+        nameValueList.clear();
 
         NameValue nameValue = new NameValue("Latitude",  String.valueOf(location.getLatitude()));
         nameValueList.add(nameValue);
@@ -203,7 +223,6 @@ public class MainActivity extends AppCompatActivity
 
         nameValue = new NameValue("Time", String.valueOf(DateFormat.format("MM/dd/yyyy hh:mm:ss", location.getTime())));
         nameValueList.add(nameValue);
-
 
         mAdapter.notifyDataSetChanged();
     }
