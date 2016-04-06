@@ -3,6 +3,7 @@ package me.root4.whereami;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -55,14 +56,13 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
 
         // Create instance of GoogleApiClient to make connection to google play service
         if (mGoogleApiClient == null) {
-            Log.d(TAG, "mGoogleApiClient null");
             mGoogleApiClient = new GoogleApiClient.Builder(mContext)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
 
-            mGoogleApiClient.connect();
+//            mGoogleApiClient.connect();
 
         }
 
@@ -72,50 +72,72 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
         mLocationRequest.setInterval(5000);
         mLocationRequest.setFastestInterval(1000);
 
-        // if connected get location
-        if (mGoogleApiClient.isConnected()) {
-            Log.d(TAG, "mGoogleApiClient connected in LocationManager ");
-            GetLocation();
-        } else {
-            mGoogleApiClient.connect();
-        }
-
     }
 
     /**
      * Attempt to get the location. If location is not available, fire a requestLocation update.
-     * Even if a location is found, this does not return the location and instead raises onLocationFound event
+     * Even if a location is found, this does not return the location and instead raises onLocationFound callback
      */
-    public void GetLocation() {
+    public void getLocation() {
 
-        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
-        if (location == null)
+        if (!(mGoogleApiClient.isConnected()))
         {
-            Log.d(TAG, "Location not found");
-            if(!(mwWaitingOnCallback)) {
-                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-                mwWaitingOnCallback = true;
-                // raise a call back to notify request location update
-                mLocationCallback.onLocationStatus("Waiting on Location update");
-            }
+            mGoogleApiClient.connect();
         }
         else
         {
-            Log.d(TAG, "Location found in getLocation");
-            //   displayLocationInfo(location);
-            mwWaitingOnCallback = false;
-            //raise a callback to notify loaction data
-            mLocationCallback.onLocationFound(location);
+            Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+
+            // check if the location data is recent
+            if (location == null || isStaleLocation(location))
+            {
+                Log.d(TAG, "Location not found or stale location");
+                if(!(mwWaitingOnCallback)) {
+                    LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                    mwWaitingOnCallback = true;
+                    // raise a call back to notify request location update
+                    mLocationCallback.onLocationStatus("Waiting on Location update");
+                }
+            }
+            else
+            {
+                Log.d(TAG, "Location found in getLocation");
+                //   displayLocationInfo(location);
+                mwWaitingOnCallback = false;
+                //raise a callback to notify loaction data
+                mLocationCallback.onLocationFound(location);
+            }
         }
 
     }
 
+    public boolean isStaleLocation(Location location)
+    {
+        long el = location.getElapsedRealtimeNanos();
+        long sys = SystemClock.elapsedRealtimeNanos();
+        long diff = (sys - el)/1000000000;
+
+        Log.d(TAG, "ellapsed tine : " + String.valueOf(diff));
+
+        // Location info is more than 10 mins old
+        if (diff > 360)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Google API connected
+     * @param bundle
+     */
     @Override
     public void onConnected(Bundle bundle) {
         Log.d(TAG, "Google play service connected");
 
-        GetLocation();
+        getLocation();
     }
 
     @Override
@@ -126,7 +148,9 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     @Override
     public void onLocationChanged(Location location) {
 
+        mwWaitingOnCallback = false;
         mLocationCallback.onLocationFound(location);
+
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         Log.d(TAG, "Not going to look for any more location update");
 
@@ -137,3 +161,4 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
 
     }
 }
+

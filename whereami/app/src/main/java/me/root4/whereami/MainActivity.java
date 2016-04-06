@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
                             .show();
 
                     LocationManager lm = new LocationManager(MainActivity.this, MainActivity.this);
-
+                    lm.getLocation();
                 }
             });
         }
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_locateH) {
 
             LocationManager lm = new LocationManager(this, this);
-            //lm.GetLocation();
+            lm.getLocation();
 
             Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Looking up location", Snackbar.LENGTH_LONG).show();
 
@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity
 
             mPlot = true;
             LocationManager lm = new LocationManager(this, this);
+            lm.getLocation();
 
         } else if (id == R.id.nav_history) {
             Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
