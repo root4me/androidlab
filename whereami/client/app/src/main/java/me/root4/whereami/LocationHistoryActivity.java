@@ -34,9 +34,6 @@ public class LocationHistoryActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        //set adapter and send data set
-        String[] myDataset = {"a" , "b" , "c" , "d" ,"e", "f", "g", "h", "i", "j", "k"};
-
         DatabaseHelper db = new DatabaseHelper(this);
         List<Location> locations = db.getAllLocations();
 

@@ -1,7 +1,9 @@
 package me.root4.whereami;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -14,7 +16,9 @@ import com.google.android.gms.location.LocationServices;
 
 /**
  * Created by harish on 3/31/16.
- *
+ */
+
+/**
  * Manage location fetching
  *
  * Require permission :
@@ -61,22 +65,20 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
                     .addOnConnectionFailedListener(this)
                     .addApi(LocationServices.API)
                     .build();
-
-//            mGoogleApiClient.connect();
-
         }
 
         // create location request
         mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(5000);
-        mLocationRequest.setFastestInterval(1000);
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
 
     }
 
     /**
-     * Attempt to get the location. If location is not available, fire a requestLocation update.
-     * Even if a location is found, this does not return the location and instead raises onLocationFound callback
+     * Attempt to get the location.
+     * If a location is found,  raises onLocationFound callback.
+     * If location is not available, fire a request for location update.
      */
     public void getLocation() {
 
@@ -102,8 +104,8 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
             else
             {
                 Log.d(TAG, "Location found in getLocation");
-                //   displayLocationInfo(location);
                 mwWaitingOnCallback = false;
+
                 //raise a callback to notify loaction data
                 mLocationCallback.onLocationFound(location);
             }
@@ -113,14 +115,15 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
 
     public boolean isStaleLocation(Location location)
     {
-        long el = location.getElapsedRealtimeNanos();
-        long sys = SystemClock.elapsedRealtimeNanos();
-        long diff = (sys - el)/1000000000;
+        long diff = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            diff = (location.getElapsedRealtimeNanos() - SystemClock.elapsedRealtimeNanos())/1000000000;
+        }
 
         Log.d(TAG, "ellapsed tine : " + String.valueOf(diff));
 
         // Location info is more than 10 mins old
-        if (diff > 360)
+        if (diff > 600)
         {
             return true;
         }
@@ -136,7 +139,6 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     @Override
     public void onConnected(Bundle bundle) {
         Log.d(TAG, "Google play service connected");
-
         getLocation();
     }
 
@@ -158,7 +160,7 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
+        mLocationCallback.onLocationStatus("Connection failed");
     }
 }
 

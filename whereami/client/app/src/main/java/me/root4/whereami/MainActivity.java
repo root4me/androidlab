@@ -140,13 +140,12 @@ public class MainActivity extends AppCompatActivity
             Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
 
             startActivity(new Intent(this,LocationHistoryActivity.class));
-        }
-        if (id == R.id.nav_send) {
-//            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
-
+        } else if (id == R.id.nav_clear_history) {
             DatabaseHelper db = new DatabaseHelper(this);
             db.deleteAllLocations();
-
+        }
+        if (id == R.id.nav_send) {
+            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -18,6 +18,11 @@
             android:id="@+id/nav_history"
             android:icon="@android:drawable/ic_menu_myplaces"
             android:title="Location History" />
+        <item
+            android:id="@+id/nav_clear_history"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Clear History" />
+
     </group>
 
     <item android:title="Communicate">
