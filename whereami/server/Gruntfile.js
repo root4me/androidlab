@@ -101,9 +101,9 @@ grunt.initConfig({
     dist: {
       files: [{
         expand: true,
-        cwd: '<%= config.app %>/scss',
+        cwd: 'scss',
         src: ['*.scss'],
-        dest: '<%= config.app %>/css',
+        dest: 'public/stylesheets',
         ext: '.css'
       }]
     }
@@ -132,7 +132,7 @@ grunt.initConfig({
       tasks: ['sass']
     },
     express: {
-      files: ['**/*.js'],
+      files: ['**/*.js', '**/*.handlebars'],
       tasks: ['express:dev'],
       options: {
         spawn: false
@@ -146,7 +146,7 @@ grunt.initConfig({
     },
     dev: {
       options: {
-        script: 'server.js',
+        script: 'bin/www',
       }
     }
   },

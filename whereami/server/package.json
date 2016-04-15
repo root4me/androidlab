@@ -1,24 +1,33 @@
 {
   "name": "whereami",
-  "description": "Serer components for whereami",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
-  "dependencies": {
-    "express": "^4.13.4"
+  "scripts": {
+    "start": "node ./bin/www"
   },
-  "author": "harish",
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-handlebars": "^3.0.0",
+    "jade": "~1.11.0",
+    "mongodb": "^2.1.16",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
+  },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-contrib-cssmin": "^0.13.0",
-    "grunt-contrib-htmlmin": "^0.4.0",
-    "grunt-contrib-uglify": "^0.9.1",
-    "grunt-contrib-watch": "^0.6.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^1.3.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
     "grunt-express-server": "^0.5.2",
-    "grunt-processhtml": "^0.3.8",
-    "grunt-sass": "^1.0.0",
-    "load-grunt-tasks": "^3.2.0",
-    "time-grunt": "^1.2.1"
+    "grunt-processhtml": "^0.3.13",
+    "grunt-sass": "^1.1.0",
+    "load-grunt-tasks": "^3.5.0",
+    "time-grunt": "^1.3.0"
   }
 }
