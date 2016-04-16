@@ -52,7 +52,7 @@
         </activity>
 
         <service
-            android:name=".HttpIntentService"
+            android:name=".RestIntentService"
             android:exported="false"></service>
     </application>
 

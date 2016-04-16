@@ -147,9 +147,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_send) {
             Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
 
-            Intent intent = new Intent(this, HttpIntentService.class);
-
-            intent.putExtra("url", "http://10.0.0.7:3000/api/locations");
+            Intent intent = new Intent(this, RestIntentService.class);
+            intent.setAction(RestIntentService.ACTION_GETLOCATIONS);
+            intent.putExtra(RestIntentService.EXTRA_URL, "http://10.0.0.7:3000/api/locations");
 
             startService(intent);
 
