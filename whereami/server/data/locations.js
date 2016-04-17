@@ -16,6 +16,13 @@ var insert = function(data, callback){
   });
 };
 
+var del = function(data, callback){
+
+  mh.delete(config.database.server,config.database.port,config.database.db,'locations',data, function(err,data){
+    callback(err,data);
+  });
+};
 
 module.exports.getAll = getAll;
 module.exports.insert = insert;
+module.exports.delete = del;

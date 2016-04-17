@@ -24,19 +24,23 @@ router.post('/', function(req,res,next){
     captured : req.body.captured
   };
 
-/*
-  locationsdata.insert(function(err,data){
-    res.send(data);
-  });
-*/
-
 if (req.body.longitude != undefined && req.body.longitude.trim().length>0)
 {
-  console.log(req.body.longitude.trim().length);
+  locationsdata.insert(dat,function(err,data){
+    res.send(dat);
+  });
 }
 
-res.send(dat);
+});
 
+router.delete('/', function(req, res, next) {
+
+  var id = req.body.id;
+
+    // call data helper method
+  locationsdata.delete(id,function(err,data){
+    res.send(data);
+  });
 });
 
 module.exports = router;

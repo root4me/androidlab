@@ -5,6 +5,7 @@
 
 var mongo = require('mongodb').MongoClient;
 var assert = require('assert');
+var ObjectID = require('mongodb').ObjectID;
 
 var url = function(server,port,dbname){
   return 'mongodb://' + server + ':' + port + '/' + dbname;
@@ -64,22 +65,22 @@ var insert = function(server, port, dbName, collectionName, data, callback){
       callback(err,docs);
     });
   });
-
 }
 
-/**
-* [function description]
-* @param  {[type]}   server         [description]
-* @param  {[type]}   port           [description]
-* @param  {[type]}   dbName         [description]
-* @param  {[type]}   collectionName [description]
-* @param  {Function} callback       [description]
-* @return {[type]}                  [description]
-*/
-var findById = function(server,port,dbName,collectionName, callback){
 
+var del = function(server, port, dbName, collectionName, id, callback){
+
+  mongo.connect(url(server,port, dbName), function(err, db) {
+    console.log("Connected correctly to server");
+    var collection = db.collection(collectionName);
+    var objid = new ObjectID(id);
+
+    collection.deleteOne({_id: objid},function(err, docs) {
+            callback(err,docs);
+    });
+  });
 };
-
 
 module.exports.getAll = getAll;
 module.exports.insert = insert;
+module.exports.delete = del;

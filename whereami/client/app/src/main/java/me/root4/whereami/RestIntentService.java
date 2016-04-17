@@ -2,17 +2,26 @@ package me.root4.whereami;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.JsonReader;
 import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -42,8 +51,11 @@ public class RestIntentService extends IntentService {
             if (ACTION_GETLOCATIONS.equals(action)) {
                 final String url = intent.getStringExtra(EXTRA_URL);
                 try {
-                    handleActionGetLocations(url);
+                    //handleActionGetLocations(url);
+                    handleActionPostLocations(url);
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -74,6 +86,7 @@ public class RestIntentService extends IntentService {
 
     }
 
+    /*
     private void handleActionPostLocations(String urlString) throws IOException {
 
         URL url = new URL(urlString);
@@ -94,6 +107,54 @@ public class RestIntentService extends IntentService {
             throw e;
         }
         finally {
+            urlConnection.disconnect();
+        }
+
+    }
+*/
+
+    private void handleActionPostLocations(String urlString) throws IOException, JSONException {
+        URL url = new URL(urlString);
+
+        JSONObject location = new JSONObject();
+        location.put("longitude", "-100");
+        location.put("latitude", "40");
+        location.put("captured", "04/17/2016 10:00:00 AM");
+
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        try{
+            urlConnection.setDoOutput(true);
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+/*
+            Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
+            writer.write(String.valueOf(location));
+            writer.close();
+*/
+            OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
+            out.write(String.valueOf(location));
+            out.close();
+
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            String inp = readStream(in);
+
+            Log.d(TAG,inp);
+
+            JSONObject res = new JSONObject(inp);
+            if (res.has("_id"))
+            {
+                Log.d(TAG,"save worked");
+            }
+            else
+            {
+                Log.d(TAG,"save failed");
+            }
+
+
+        } catch (Exception e){
+
+        }
+        finally{
             urlConnection.disconnect();
         }
 
