@@ -35,7 +35,7 @@ public class LocationHistoryActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         DatabaseHelper db = new DatabaseHelper(this);
-        List<Location> locations = db.getAllLocations();
+        List<Location> locations = db.getToBeSynced();
 
         mAdapter = new LocationHistoryViewAdapter(locations);
         mRecyclerView.setAdapter(mAdapter);

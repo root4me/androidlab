@@ -86,33 +86,6 @@ public class RestIntentService extends IntentService {
 
     }
 
-    /*
-    private void handleActionPostLocations(String urlString) throws IOException {
-
-        URL url = new URL(urlString);
-
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try {
-            urlConnection.setDoOutput(true);
-            urlConnection.setChunkedStreamingMode(0);
-
-            OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-            //writeStream(out);
-
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            //readStream(in);
-        }       catch (Exception e)
-        {
-            Log.e(TAG, e.getStackTrace().toString() );
-            throw e;
-        }
-        finally {
-            urlConnection.disconnect();
-        }
-
-    }
-*/
-
     private void handleActionPostLocations(String urlString) throws IOException, JSONException {
         URL url = new URL(urlString);
 
@@ -126,11 +99,7 @@ public class RestIntentService extends IntentService {
             urlConnection.setDoOutput(true);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/json");
-/*
-            Writer writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
-            writer.write(String.valueOf(location));
-            writer.close();
-*/
+
             OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
             out.write(String.valueOf(location));
             out.close();
@@ -152,7 +121,7 @@ public class RestIntentService extends IntentService {
 
 
         } catch (Exception e){
-
+            Log.e(TAG,e.getMessage());
         }
         finally{
             urlConnection.disconnect();

@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.text.format.DateFormat;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +18,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static final String TAG = "DATABASE_HELPER";
 
     public DatabaseHelper(Context context){
         super(context, "Locations", null, 1);
@@ -26,14 +26,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("DBHANDLER", "Inside on create");
+        Log.d(TAG, "Inside on create");
         String createScript = "CREATE TABLE Locations (Id INTEGER PRIMARY KEY, lat REAL, lng REAL , captureDate DATETIME, createDate DATETIME, synced NUMERIC )";
         db.execSQL(createScript);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.d("DBHANDLER", "Inside upgrade");
+        Log.d(TAG, "Inside upgrade");
         db.execSQL("DROP TABLE IF EXISTS Locations");
         onCreate(db);
     }
@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public Location getLocation(int id) {
+    public Location getLocationById(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query("Locations", new String[]{"id",
@@ -65,38 +65,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Log.d("DBQUERY", cursor.getString(1));
-        /*
-        Location loc = new Location(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2));
-        return loc;
-        */
         return null;
+    }
+
+    public int setSyncFlag(int id, boolean flag) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        ContentValues args = new ContentValues();
+        args.put("synced", flag);
+
+        int retval = db.update("Locations",args,"Id=?", new String[]{String.valueOf(id)});
+        db.close();
+
+        return retval;
     }
 
     public List<Location> getAllLocations(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * from Locations", null);
 
-        Location loc;
         List<Location> locations = new ArrayList<Location>();
 
-        if (cursor.moveToFirst())
-        {
-            while (!(cursor.isAfterLast()))
-            {
-                loc = new Location();
-                loc.setLat(cursor.getDouble(cursor.getColumnIndex("lat")));
-                loc.setLng(cursor.getDouble(cursor.getColumnIndex("lng")));
-                loc.setCaptureDate(cursor.getLong(cursor.getColumnIndex("captureDate")));
-                loc.setCreateDate(cursor.getLong(cursor.getColumnIndex("createDate")));
+        locations = locationList(cursor);
 
-                locations.add(loc);
-
-                Log.d("SELECTALL", String.valueOf(loc.getLat()));
-                cursor.moveToNext();
-            }
+        if (cursor != null && !cursor.isClosed()) {
+            cursor.close();
+            db.close();
         }
+
+        return locations;
+    }
+
+    public List<Location> getToBeSynced(){
+
+        Log.d("getToBeSynced", "inside getToBeSynced");
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // get there synced = false
+        Cursor cursor = db.query("Locations", new String[]{"id",
+                "lat", "lng", "captureDate", "createDate", "synced"}, "synced=?", new String[]{"0"}, null, null, null, null);
+
+        List<Location> locations = new ArrayList<Location>();
+
+        locations = locationList(cursor);
+
         if (cursor != null && !cursor.isClosed()) {
             cursor.close();
             db.close();
@@ -113,6 +127,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private String formatedDate(Date date) {
         return (String) DateFormat.format("MM/dd/yyyy hh:mm:ss", date);
+    }
+
+    private List<Location> locationList(Cursor cursor){
+
+        Location loc;
+        List<Location> locations = new ArrayList<Location>();
+
+        if (cursor.moveToFirst())
+        {
+            while (!(cursor.isAfterLast()))
+            {
+                loc = new Location();
+                loc.setId(cursor.getInt(cursor.getColumnIndex("Id")));
+                loc.setLat(cursor.getDouble(cursor.getColumnIndex("lat")));
+                loc.setLng(cursor.getDouble(cursor.getColumnIndex("lng")));
+                loc.setCaptureDate(cursor.getLong(cursor.getColumnIndex("captureDate")));
+                loc.setCreateDate(cursor.getLong(cursor.getColumnIndex("createDate")));
+                loc.setCreateDate(cursor.getLong(cursor.getColumnIndex("synced")));
+
+                locations.add(loc);
+
+                cursor.moveToNext();
+
+                Log.e(TAG,String.valueOf(loc.getId()));
+
+            }
+        }
+
+        return locations;
     }
 
 }

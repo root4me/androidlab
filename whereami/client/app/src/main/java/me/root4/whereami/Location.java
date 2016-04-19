@@ -9,6 +9,9 @@ import java.util.Date;
  */
 public class Location {
 
+
+
+    private int id;
     private double lat;
     private double lng;
     private long captureDate;
@@ -27,6 +30,13 @@ public class Location {
         this.synced = false;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public double getLat() {
         return lat;
