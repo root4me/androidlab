@@ -1,0 +1,18 @@
+{
+  "name": "whereami",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/root4me/androidlab",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.2.1"
+  }
+}

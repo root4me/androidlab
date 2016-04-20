@@ -1,2 +1,204 @@
+<div class="main-wrapper">
+  <header id="intro" class="hero">
+    <div class="intro-text">
+      <p>
+        Learn from yesterday,
+        <br>live for today,
+        <br>hope for tomorrow.
+        <br>The important thing is not to stop questioning
+      </p>
+      <br>- Albert Einstein -
+    </div>
+  </header>
+  <!-- probably better to inject overlay section and  css using javascript. That is enhancement for later -->
+  <section id="intro-overlay" class="hero-overlay">
+  </section>
 
-<h3>This is where the content goes</h3>
+  <!--
+  Nothing fancy here. Just a section to hold some content, so we can scroll.
+  Too lazy to style it and get it responsive. Instead using zurb foundation grid 'row' and 'column' classes
+-->
+<section class="homecontent">
+  <div class="row">
+    <div class="column">
+      <h1>About</h1>
+      <p>
+        Notes, thoughts and how-to(s), sprinkled with snippets of code to taste.
+        <br>Experiments, that keep one engaged, beyond dreary work days.
+        <br>Some of it are to remind, what was read, but need to refer.
+        <br>Truth be told, the content is dry, this site itself is an experiment in progress.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="sporty" class="img-bg-section60">
+  <div class="section-header">
+    <h1>Top Picks</h1>
+  </div>
+</section>
+<section id="sporty-overlay" class="img-bg-section60-overlay">
+</section>
+
+<section class="homecontent">
+  <div class="row">
+    <div class="large-6 columns">
+
+      <a href="linux.html">
+
+        <div class="card">
+          <div class="header">
+            <img src="img/linux.png">
+            <span class="title"><h3>Linux</h3></span>
+          </div>
+
+          <div class=" row ">
+            <div class="large-2 columns authorinfo ">
+              <div class="namelogo ">
+                <img src="img/about.jpg " />
+              </div>
+              <div>
+                <span>root4me</span>
+                <span>08/05/2015</span>
+              </div>
+            </div>
+
+            <div class="large-10 columns content ">
+              <p>I have been using ubuntu as my primary operating system at home for over a year now. Till then, it was an on and off relationship with linux, mostly by spinning up VM and trying out different distros of linux.One day, I decided that VM is too slow  ../p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="large-6 columns">
+
+        <a href="beagle-bone-black.html">
+
+          <div class="card">
+            <div class="header">
+              <img src="img/embedded.jpg">
+              <span class="title"><h3>Embedded systems</h3></span>
+            </div>
+
+            <div class=" row ">
+              <div class="large-2 columns authorinfo ">
+                <div class="namelogo ">
+                  <img src="img/about.jpg " />
+                </div>
+                <div>
+                  <span>root4me</span>
+                  <span>07/26/2015</span>
+                </div>
+              </div>
+
+              <div class="large-10 columns content ">
+                <p>BeagleBoneBlack is so easy to set up once you unpack it from the box. I bought one back in 2013 and then prompty digressed into learning node.js (triggered by the fact that the device showcases samples using bonescript as soon as you plug it in). I do not regret learning node.js. It was a lot of fun and gave me an opportunity to smirk .../p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
+
+          <a href="mini-quadcopter-build.html">
+
+            <div class="card">
+              <div class="header">
+                <img src="img/miniQuad_gt4.jpg">
+                <span class="title"><h3>Multi Rotor</h3></span>
+              </div>
+
+              <div class=" row ">
+                <div class="large-2 columns authorinfo ">
+                  <div class="namelogo ">
+                    <img src="img/about.jpg " />
+                  </div>
+                  <div>
+                    <span>root4me</span>
+                    <span>11/01/2014</span>
+                  </div>
+                </div>
+                <div class="large-10 columns content ">
+                  <p>
+                    Number of crashes, broken frames, attempts at tuning the motors, flight controller and a lot of frustrations later; I decided that the first quadcopter I tried to build was not going to get me to the point of taking stable videos form the sky with out some serious rework
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="large-6 columns">
+
+          <a href="https://www.youtube.com/channel/UCX6hM9B14UTycfekFDkJfIw" target="_blank">
+
+            <div class="card">
+              <div class="header">
+                <img src="img/youtube.png">
+                <span class="title"><h3>Channel</h3></span>
+              </div>
+
+              <div class=" row ">
+                <div class="large-2 columns authorinfo ">
+                  <div class="namelogo ">
+                    <img src="img/about.jpg " />
+                  </div>
+                  <div>
+                    <span>root4me</span>
+                    <span>11/01/2014</span>
+                  </div>
+                </div>
+
+                <div class="large-10 columns content ">
+                  <p>The tube ! Hooked to the tube, are you ? Here are some videos to watch while you are getting your daily fix of the tube./p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- footer -->
+      <footer class="footer">
+        <div class="row">
+          <div class="small-12 columns">
+            <p class="slogan"></p>
+            <p class="links">
+              <a href="http://www.root4.me/">Home</a>
+              <a href="#">Top</a>
+            </p>
+            <p class="copywrite">© 2015 .... Hand crafted with care. Copy, Right &#9786; </p>
+          </div>
+        </div>
+      </footer>
+      <!-- end footer -->
+
+    </div>
+
+    <!-- build:js js/jquery.min.js -->
+    <script src="stylesheets/jquery/dist/jquery.js "></script>
+    <!-- /build -->
+
+    <!-- build:js js/foundation.min.js -->
+    <script src="stylesheets/foundation-sites/dist/foundation.js "></script>
+    <!-- /build -->
+
+    <!-- build:js js/app.min.js -->
+    <script src="js/app.js "></script>
+    <!-- /build -->
+
+    <script>
+    $(window).on("load", function(e) {
+      $('#intro').scrollnfade();
+      $('#sporty').scrollnfade();
+    });
+
+    $(window).on("resize", function(e) {
+      $(document).scrollnfadeReinit(); // do this only once
+
+      $('#intro').scrollnfade();
+      $('#sporty').scrollnfade();
+    });
+    </script>

@@ -37,10 +37,10 @@ grunt.initConfig({
     dist: {
       files: [{
         expand: true,
-        cwd: '<%= config.app %>',
-        src: ['*.html'],
+        cwd: 'views',
+        src: ['**/*.handlebars'],
         dest: '<%= config.dist %>',
-        ext: '.html'
+        ext: '.handlebars'
       }],
     },
   },
