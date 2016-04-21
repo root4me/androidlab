@@ -1,5 +1,18 @@
 /* card styles _card.scss */
 
+// For large screen remove foundation column left padding so that card shows up with no left padding
+.column, .columns {
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem;
+}
+
+@media only screen and (min-width: 64.0625em){
+  .column, .columns {
+      padding-left: 0rem;
+      padding-right: 0.9375rem;
+  }
+}
+
 .card {
   margin-top: 10px;
   margin-left: 2px;
@@ -13,20 +26,47 @@
   flex-direction: column;
   background-color: white;
 
+  .ribbon
+  {
+      position: relative;
+      min-height: 40px;
+      background-color: $primary-color;
+      .title {
+        position: absolute;
+        left: 0px;
+        padding-left: 20px;
+        padding-top: 5px;
+        h4 {
+          font-family: $primary-title-font-family;
+          color: $primary-light-text-color;
+          margin: 0px;
+          padding: 0px;
+        }
+
+        h3 {
+          font-family: $primary-title-font-family;
+          color: $primary-light-text-color;
+          margin: 0px;
+          padding: 0px;
+        }
+
+      }
+  }
+
   .header {
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     position: relative;
     min-height: 100px;
     background-color: $primary-color;
-    
+
     img {
-      max-height: 200px;
-      min-height: 200px;
+      max-height: 240px;
+      min-height: 240px;
       width: 100%;
-      
+
     }
-    
+
 
     .title {
       position: absolute;
@@ -39,14 +79,14 @@
         margin: 0px;
         padding: 0px;
       }
-      
+
       h3 {
         font-family: $primary-title-font-family;
         color: $primary-light-text-color;
         margin: 0px;
         padding: 0px;
       }
-      
+
     }
   }
 }
@@ -55,7 +95,7 @@
   .authorinfo {
     align-items: center;
     box-sizing: border-box;
-    color: $disabled-dark-text-color;
+    color: $secondary-dark-text-color;
     display: flex;
     flex-direction: colum;
     font-size: 13px;
@@ -71,7 +111,7 @@
       -moz-border-radius: 150px;
     }
     span {
-      color: $disabled-dark-text-color;
+      color: $secondary-dark-text-color;
       display: block;
       padding-left: 5px;
     }
@@ -80,8 +120,8 @@
     color: $secondary-dark-text-color;
     padding: 20px;
     text-align: left;
-    min-height: 200px;
-    max-height: 200px;
+    min-height: 150px;
+    max-height: 150px;
     overflow: hidden;
 
   }
@@ -109,5 +149,3 @@ section {
 }
 
 /* end card styles _card.scss */
-
-

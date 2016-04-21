@@ -55,6 +55,14 @@ grunt.initConfig({
       }]
     },
 
+    appFiles: {
+      files: [{
+        expand: true,
+        src: ['app.js', 'config.js' , 'bower.json' , 'package.json', 'data/**/*','bin/**/*'],
+        dest: '<%= config.dist %>',
+      }]
+    },
+
   },
 
   uglify: {
@@ -127,7 +135,7 @@ grunt.initConfig({
       livereload: true
     },
     scss: {
-      files: '<%= config.app %>/scss/*',
+      files: 'scss/*',
       tasks: ['sass']
     },
     express: {
@@ -158,7 +166,7 @@ grunt.loadNpmTasks('grunt-express-server');
 
 grunt.registerTask('default', ['usage']);
 grunt.registerTask('dev', ['sass', 'express', 'watch']);
-grunt.registerTask('build', ['clean:dist','sass', 'copy:distimg', 'processhtml', 'cssmin', 'uglify', 'htmlmin']);
+grunt.registerTask('build', ['clean:dist','sass', 'copy', 'processhtml', 'cssmin', 'uglify', 'htmlmin']);
 grunt.registerTask('build-nomin', ['clean:dist','sass', 'copy:distimg', 'processhtml']);
 
 grunt.registerTask('usage', 'display usage parameters', function() {

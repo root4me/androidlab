@@ -1,7 +1,7 @@
 /* Top Nav styles */
 
 $top-nav-background: rgb(255,255,255);
-$top-nav-bottom: 1px solid $divider-dark-text-color;
+$top-nav-bottom: 1px solid $divider-color;
 
 
 .namelogo h1 {
@@ -32,16 +32,28 @@ $top-nav-bottom: 1px solid $divider-dark-text-color;
 
 .top-bar {
     background: $top-nav-background;
-    .name
+    .namelogo
     {
         h1
         {
             a{
-                width: auto;            
+                color: $primary-color-dark;
+                width: auto;
             }
         }
     }
+
+// overrive foundation top nav right sub menu style
+    .top-bar-section li:not(.has-form) a:not(.button)
+    {
+        background: $top-nav-background;
+        font-size: 1em;
+        font-weight: 600;
+        color: $primary-color-dark;
+    }
+    .top-bar-section li:not(.has-form) a:not(.button):hover {
+          background: $top-nav-background;
+          color:$primary-color;
+    }
+
 }
-    
-
-

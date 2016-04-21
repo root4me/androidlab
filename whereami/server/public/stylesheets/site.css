@@ -28,7 +28,7 @@ body {
   height: 80vh; }
   .hero .intro-text {
     padding-top: 40%;
-    color: white;
+    color: #C8E6C9;
     text-align: center;
     font-family: 'Roboto Condensed', sans-serif; }
   .hero .intro-text p {
@@ -51,13 +51,14 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #727272;
   height: 80vh;
   opacity: 0; }
 
 .img-bg-section60 {
   height: 60vh; }
   .img-bg-section60 h1 {
+    background: #4CAF50;
     color: white;
     text-align: center; }
   .img-bg-section60 .section-header {
@@ -75,20 +76,20 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #727272;
   height: 60vh;
   opacity: 0; }
 
-.sports {
-  background: url("http://lorempixel.com/1024/600/sports/5") no-repeat center center;
+.accomodation {
+  background: url("http://lorempixel.com/1000/600/sports/5/") no-repeat center center;
   background-size: cover; }
 
 .nature {
-  background: url("http://lorempixel.com/1024/600/nature/10") no-repeat center center;
+  background: url("http://lorempixel.com/1000/600/sports/5/") no-repeat center center;
   background-size: cover; }
 
-.people {
-  background: url("http://lorempixel.com/1024/600/people/1") no-repeat center center;
+.activities {
+  background: url("http://lorempixel.com/1000/600/sports/5/") no-repeat center center;
   background-size: cover; }
 
 .homecontent {
@@ -96,9 +97,21 @@ body {
   text-align: center;
   font-family: 'Roboto', sans-serif, Helvetica, Arial; }
   .homecontent h1 {
+    color: #C8E6C9;
     font-size: 2.5em; }
+  .homecontent p {
+    color: #727272; }
 
 /* card styles _card.scss */
+.column, .columns {
+  padding-left: 0.9375rem;
+  padding-right: 0.9375rem; }
+
+@media only screen and (min-width: 64.0625em) {
+  .column, .columns {
+    padding-left: 0rem;
+    padding-right: 0.9375rem; } }
+
 .card {
   margin-top: 10px;
   margin-left: 2px;
@@ -109,15 +122,34 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white; }
+  .card .ribbon {
+    position: relative;
+    min-height: 40px;
+    background-color: #4CAF50; }
+    .card .ribbon .title {
+      position: absolute;
+      left: 0px;
+      padding-left: 20px;
+      padding-top: 5px; }
+      .card .ribbon .title h4 {
+        font-family: "Roboto Condensed", sans-serif, Helvetica;
+        color: white;
+        margin: 0px;
+        padding: 0px; }
+      .card .ribbon .title h3 {
+        font-family: "Roboto Condensed", sans-serif, Helvetica;
+        color: white;
+        margin: 0px;
+        padding: 0px; }
   .card .header {
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     position: relative;
     min-height: 100px;
-    background-color: #00bcd4; }
+    background-color: #4CAF50; }
     .card .header img {
-      max-height: 200px;
-      min-height: 200px;
+      max-height: 240px;
+      min-height: 240px;
       width: 100%; }
     .card .header .title {
       position: absolute;
@@ -138,7 +170,7 @@ body {
 .card .authorinfo {
   align-items: center;
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.26);
+  color: #727272;
   display: flex;
   flex-direction: colum;
   font-size: 13px;
@@ -153,16 +185,16 @@ body {
     -webkit-border-radius: 150px;
     -moz-border-radius: 150px; }
   .card .authorinfo span {
-    color: rgba(0, 0, 0, 0.26);
+    color: #727272;
     display: block;
     padding-left: 5px; }
 
 .card .content {
-  color: rgba(0, 0, 0, 0.54);
+  color: #727272;
   padding: 20px;
   text-align: left;
-  min-height: 200px;
-  max-height: 200px;
+  min-height: 150px;
+  max-height: 150px;
   overflow: hidden; }
 
 .card:hover {
@@ -201,12 +233,21 @@ section {
 
 .contain-to-grid {
   background: white;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+  border-bottom: 1px solid #B6B6B6; }
 
 .top-bar {
   background: white; }
-  .top-bar .name h1 a {
+  .top-bar .namelogo h1 a {
+    color: #388E3C;
     width: auto; }
+  .top-bar .top-bar-section li:not(.has-form) a:not(.button) {
+    background: white;
+    font-size: 1em;
+    font-weight: 600;
+    color: #388E3C; }
+  .top-bar .top-bar-section li:not(.has-form) a:not(.button):hover {
+    background: white;
+    color: #4CAF50; }
 
 /* post styles _post.scss */
 .post {
@@ -224,7 +265,7 @@ section {
     border-top-right-radius: 2px;
     position: relative;
     min-height: 100px;
-    background-color: #00bcd4; }
+    background-color: #4CAF50; }
     .post .header img {
       max-height: 200px;
       width: 100%; }
@@ -267,17 +308,17 @@ section {
 
 .post .content {
   align-items: center;
-  color: rgba(0, 0, 0, 0.54);
+  color: #727272;
   padding: 20px; }
   .post .content pre {
-    background-color: #424242;
+    background-color: rgba(0, 0, 0, 0.12);
     padding: 2px; }
 
 .post .action {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
   padding: 1.3rem; }
   .post .action a {
-    color: #448aff;
+    color: #FF9800;
     transition: color 0.3s ease;
     text-transform: uppercase;
     text-decoration: none; }
@@ -285,39 +326,19 @@ section {
 /* end post styles _post.scss */
 code {
   color: rgba(255, 255, 255, 0.7);
-  background-color: #424242;
+  background-color: rgba(0, 0, 0, 0.12);
   word-wrap: break-word;
   border-width: 0px; }
 
-/* begin bottom nav styling */
-.bottom-nav {
-  align-items: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  height: 32px;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  margin-top: 12px; }
-
-.bottom-nav i {
-  background-color: #448aff;
-  border-radius: 30px; }
-
-.bottom-nav i:hover {
-  opacity: 0.5;
-  -webkit-transition: 0.3s ease;
-  -moz-transition: 0.3s ease;
-  -ms-transition: 0.3s ease;
-  -o-transition: 0.3s ease;
-  transition: 0.3s ease; }
-
-/* begin bottom nav styling */
 .footer {
-  background-color: #424242; }
+  background-color: #212121;
+  color: rgba(255, 255, 255, 0.7); }
+
+.footer p {
+  margin-top: 10px; }
 
 .footer p.slogan {
-  color: #8d9093;
+  color: rgba(255, 255, 255, 0.3);
   font-size: 1.8rem;
   margin: 0 0 1rem; }
 
@@ -339,5 +360,11 @@ code {
 .footer .links a:last-child::after {
   content: "";
   padding: 0 0.4rem 0 0.8rem; }
+
+.button {
+  background: #4CAF50; }
+
+.button:hover {
+  background: #388E3C; }
 
 /*# sourceMappingURL=site.css.map */

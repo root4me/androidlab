@@ -2,8 +2,8 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
 //==================================
-$foregroundTextColor: rgba(255,255,255,1);
-$overlayColor: rgba(0,0,0,.75);
+$foregroundTextColor: $primary-color-light;
+$overlayColor: $secondary-dark-text-color;
 //===================================
 
 .hero {
@@ -19,7 +19,7 @@ $overlayColor: rgba(0,0,0,.75);
   .intro-text p {
     font-size: 1.5em;
   }
-  
+
   // meduim screen
   @media only screen and (min-width: 40.063em) {
     .intro-text {
@@ -39,7 +39,6 @@ $overlayColor: rgba(0,0,0,.75);
       font-size: 2.5em;
     }
   }
-
 }
 
 .hero-overlay
@@ -59,13 +58,14 @@ $overlayColor: rgba(0,0,0,.75);
 .img-bg-section60
 {
   height: 60vh;
-  
+
   h1
   {
-    color: $foregroundTextColor;
+    background: $primary-color;
+    color: $primary-light-text-color;
     text-align: center;
   }
-  
+
    .section-header {
      padding-top: 50%;
    }
@@ -74,7 +74,7 @@ $overlayColor: rgba(0,0,0,.75);
     .section-header {
       padding-top: 40%;
     }
-  }  
+  }
 
   @media only screen and (min-width: 64.063em) {
     .section-header {
@@ -97,32 +97,38 @@ $overlayColor: rgba(0,0,0,.75);
 }
 
 // sample background images
-.sports
+.accomodation
 {
-  background: url("http://lorempixel.com/1024/600/sports/5") no-repeat center center; 
+  background: url("http://lorempixel.com/1000/600/sports/5/") no-repeat center center;
   background-size: cover;
 }
+
 
 .nature
 {
-  background: url("http://lorempixel.com/1024/600/nature/10") no-repeat center center; 
+  background: url("http://lorempixel.com/1000/600/sports/5/") no-repeat center center;
   background-size: cover;
 }
 
-.people
+.activities
 {
-  background: url("http://lorempixel.com/1024/600/people/1") no-repeat center center; 
+  background: url("http://lorempixel.com/1000/600/sports/5/") no-repeat center center;
   background-size: cover;
 }
 
-// Not important for the effect. 
+// Not important for the effect.
 .homecontent
 {
   padding-top: 2%;
   text-align: center;
   font-family: 'Roboto', sans-serif, Helvetica, Arial;
+
   h1
   {
+    color: $foregroundTextColor;
     font-size: 2.5em;
+  }
+    p{
+    color: $secondary-dark-text-color;
   }
 }
