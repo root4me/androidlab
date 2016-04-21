@@ -10,12 +10,12 @@ module.exports = function(grunt) {
   var config = {
     app: 'app',
     dist: 'dist',
-    srcjs: ['js/*.*', '../bower_components/foundation/js/vendor/modernizr.js', '../bower_components/jquery/dist/jquery.js',
-    '../bower_components/foundation/js/foundation/foundation.js', '../bower_components/foundation/js/foundation/foundation.topbar.js'
+    srcjs: ['javascripts/*.*', '../bower_components/jquery/dist/jquery.js',
+    '../bower_components/foundation-sites/dist/foundation.js'
   ],
   srcscss: ['scss/*.*'],
-  srccss: ['css/*.*', '../bower_components/foundation/css/foundation.css'],
-  srcimg: ['img/*.*'],
+  srccss: ['stylesheets/*.*', '../bower_components/foundation-sites/dist/foundation.css'],
+  srcimg: ['images/*.*'],
 };
 
 // Define the configuration for all the tasks
@@ -39,7 +39,7 @@ grunt.initConfig({
         expand: true,
         cwd: 'views',
         src: ['**/*.handlebars'],
-        dest: '<%= config.dist %>',
+        dest: '<%= config.dist %>/views',
         ext: '.handlebars'
       }],
     },
@@ -49,10 +49,9 @@ grunt.initConfig({
     distimg: {
       files: [{
         expand: true,
-        cwd: '<%= config.app %>',
+        cwd: 'public',
         src: '<%= config.srcimg %>',
-        dest: '<%= config.dist %>',
-
+        dest: '<%= config.dist %>/public',
       }]
     },
 
@@ -70,9 +69,9 @@ grunt.initConfig({
         /* Without this jquery.xyz.js and jquery.js at source will only produce one jquery.min.js at the destination folder
         Drove me nuts wondering why uglify seem to miss files. Turns out, i didnt read the doc close enough.
         But, why some one thought that setting extDot default to 'first' is the best thing to do is still a mystery. Extensions usually start after the last dot !  */
-        cwd: '<%= config.app %>',
+        cwd: 'public',
         src: '<%= config.srcjs %>',
-        dest: '<%= config.dist %>/js',
+        dest: '<%= config.dist %>/public/javascripts',
         ext: '.min.js'
       }]
     },
@@ -85,9 +84,9 @@ grunt.initConfig({
       files: [{
         expand: true,
         flatten: true,
-        cwd: '<%= config.app %>',
+        cwd: 'public',
         src: '<%= config.srccss %>',
-        dest: '<%= config.dist %>/css',
+        dest: '<%= config.dist %>/public/stylesheets',
         ext: '.min.css'
       }]
     }
