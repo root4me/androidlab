@@ -89,42 +89,50 @@ public class RestIntentService extends IntentService {
     private void handleActionPostLocations(String urlString) throws IOException, JSONException {
         URL url = new URL(urlString);
 
-        JSONObject location = new JSONObject();
-        location.put("longitude", "-100");
-        location.put("latitude", "40");
-        location.put("captured", "04/17/2016 10:00:00 AM");
 
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        try{
-            urlConnection.setDoOutput(true);
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Content-Type", "application/json");
+        DatabaseHelper db = new DatabaseHelper(this);
+        List<Location> locations = db.getToBeSynced();
 
-            OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
-            out.write(String.valueOf(location));
-            out.close();
+        for (int i = 0; i < locations.size(); i++) {
 
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            String inp = readStream(in);
+            JSONObject location = new JSONObject();
+            location.put("longitude", locations.get(i).getLng());
+            location.put("latitude", locations.get(i).getLat());
+            // TODO might need to format this date and convert to utc
+            location.put("captured", locations.get(i).getCaptureDate());
 
-            Log.d(TAG,inp);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            try{
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setRequestProperty("Content-Type", "application/json");
 
-            JSONObject res = new JSONObject(inp);
-            if (res.has("_id"))
-            {
-                Log.d(TAG,"save worked");
+                OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
+                out.write(String.valueOf(location));
+                out.close();
+
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                String inp = readStream(in);
+
+                Log.d(TAG,inp);
+
+                JSONObject res = new JSONObject(inp);
+                if (res.has("_id"))
+                {
+                    Log.d(TAG,"save worked");
+                }
+                else
+                {
+                    Log.d(TAG,"save failed");
+                }
+
+
+            } catch (Exception e){
+                Log.e(TAG,e.getMessage());
             }
-            else
-            {
-                Log.d(TAG,"save failed");
+            finally{
+                urlConnection.disconnect();
             }
-
-
-        } catch (Exception e){
-            Log.e(TAG,e.getMessage());
-        }
-        finally{
-            urlConnection.disconnect();
         }
 
     }

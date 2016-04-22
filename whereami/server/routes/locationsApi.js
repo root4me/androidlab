@@ -24,7 +24,7 @@ router.post('/', function(req,res,next){
     captured : req.body.captured
   };
 
-if (req.body.longitude != undefined && req.body.longitude.trim().length>0)
+if (dat.longitude != undefined && dat.latitude != undefined)
 {
   locationsdata.insert(dat,function(err,data){
     res.send(dat);

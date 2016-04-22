@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity
 
             Intent intent = new Intent(this, RestIntentService.class);
             intent.setAction(RestIntentService.ACTION_GETLOCATIONS);
-            intent.putExtra(RestIntentService.EXTRA_URL, "http://10.0.0.7:3000/api/locations");
+            intent.putExtra(RestIntentService.EXTRA_URL, "http://192.168.122.1:3000/api/locations");
 
             startService(intent);
 
