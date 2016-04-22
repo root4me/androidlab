@@ -15,8 +15,7 @@ public class Location {
     private double lat;
     private double lng;
     private long captureDate;
-    private long createDate;
-    private boolean synced;
+    private int synced;
 
     public Location(){
 
@@ -26,8 +25,6 @@ public class Location {
         this.lat = lat;
         this.lng = lng;
         this.captureDate = captureDate;
-        this.createDate = new Date().getTime();
-        this.synced = false;
     }
 
     public int getId() {
@@ -58,24 +55,22 @@ public class Location {
         return captureDate;
     }
 
+
+    public String getFormattedCaptureDate() {
+        return Utils.getDateTime(captureDate);
+    }
+
     public void setCaptureDate(long captureDate) {
         this.captureDate = captureDate;
     }
 
-    public long getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(long createDate) {
-        this.createDate = createDate;
-    }
-
-    public boolean isSynced() {
+    public int getSynced() {
         return synced;
     }
 
-    public void setSynced(boolean synced) {
+    public void setSynced(int synced) {
         this.synced = synced;
     }
+
 
 }

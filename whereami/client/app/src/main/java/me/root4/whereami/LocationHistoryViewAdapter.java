@@ -23,16 +23,15 @@ public class LocationHistoryViewAdapter extends RecyclerView.Adapter<LocationHis
         public TextView lat;
         public TextView lng;
         public TextView capturedTime;
-        public TextView createdTime;
-        public TextView createdDate;
+        public TextView capturedDate;
 
         public LocationViewHolder(View v) {
             super(v);
             lat = (TextView) v.findViewById(R.id.loc_lat);
             lng = (TextView) v.findViewById(R.id.loc_lng);
             //capturedTime = (TextView) v.findViewById(R.id.loc_capturedTime);
-            createdTime = (TextView) v.findViewById(R.id.loc_createdTime);
-            createdDate = (TextView) v.findViewById(R.id.loc_createdDate);
+            capturedTime = (TextView) v.findViewById(R.id.loc_capturedTime);
+            capturedDate = (TextView) v.findViewById(R.id.loc_capturedDate);
         }
     }
 
@@ -45,7 +44,6 @@ public class LocationHistoryViewAdapter extends RecyclerView.Adapter<LocationHis
     public LocationHistoryViewAdapter.LocationViewHolder onCreateViewHolder(ViewGroup parent,
                                          int viewType) {
 
-        Log.d("VIEWADAPTER", "inside onCreateViewHolder ");
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.locations_row, parent, false);
@@ -60,14 +58,12 @@ public class LocationHistoryViewAdapter extends RecyclerView.Adapter<LocationHis
 
         holder.lat.setText((String.valueOf(((Location) mDataset.get(position)).getLat())));
         holder.lng.setText((String.valueOf(((Location) mDataset.get(position)).getLng())));
-        //holder.capturedTime.setText((String.valueOf (((Location) mDataset.get(position)).getCaptureDate())));
-        holder.createdTime.setText((String.valueOf(Utils.getTime(((Location) mDataset.get(position)).getCreateDate()))));
-        holder.createdDate.setText((String.valueOf(Utils.getDate(((Location) mDataset.get(position)).getCreateDate()))));
+        holder.capturedTime.setText((String.valueOf(Utils.getTime(((Location) mDataset.get(position)).getCaptureDate()))));
+        holder.capturedDate.setText((String.valueOf(Utils.getDate(((Location) mDataset.get(position)).getCaptureDate()))));
     }
 
     @Override
     public int getItemCount() {
-        Log.d("VIEWADAPTER", "inside getItemCount ");
         return mDataset.size();
     }
 

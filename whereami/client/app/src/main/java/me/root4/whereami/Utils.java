@@ -15,4 +15,8 @@ public class Utils {
     public static String getDate(long date) {
         return (String) DateFormat.format("MMM dd yy", new Date(date));
     }
+
+    public static String getDateTime(long date) {
+        return (String) DateFormat.format("MM/dd/yyyy hh:mm:ss a", new Date(date));
+    }
 }

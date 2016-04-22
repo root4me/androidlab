@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
   locationsdata.getAll(function(err,data){
     // Going to get an array of rows from getAll. wrap it around a selector before supplying it to the view
     res.render('locations/index', {
-      countries : data
+      locations : data
     } );
   });
 });

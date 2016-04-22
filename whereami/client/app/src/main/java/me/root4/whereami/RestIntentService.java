@@ -98,8 +98,7 @@ public class RestIntentService extends IntentService {
             JSONObject location = new JSONObject();
             location.put("longitude", locations.get(i).getLng());
             location.put("latitude", locations.get(i).getLat());
-            // TODO might need to format this date and convert to utc
-            location.put("captured", locations.get(i).getCaptureDate());
+            location.put("captured", locations.get(i).getFormattedCaptureDate());
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try{

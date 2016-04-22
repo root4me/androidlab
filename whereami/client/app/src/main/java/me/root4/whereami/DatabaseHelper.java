@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(TAG, "Inside on create");
-        String createScript = "CREATE TABLE Locations (Id INTEGER PRIMARY KEY, lat REAL, lng REAL , captureDate DATETIME, createDate DATETIME, synced NUMERIC )";
+        String createScript = "CREATE TABLE Locations (Id INTEGER PRIMARY KEY, lat REAL, lng REAL , captureDate DATETIME, synced NUMERIC )";
         db.execSQL(createScript);
     }
 
@@ -46,7 +46,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("lat", location.getLat());
         values.put("lng", location.getLng());
         values.put("captureDate", location.getCaptureDate());
-        values.put("createDate", new Date().getTime());
         values.put("synced", false);
 
         long Id = db.insert("Locations", null, values);
@@ -60,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query("Locations", new String[]{"id",
-                        "lat", "lng", "captureDate", "createDate", "synced"}, "Id=?",
+                        "lat", "lng", "captureDate", "synced"}, "Id=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -105,7 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // get there synced = false
         Cursor cursor = db.query("Locations", new String[]{"id",
-                "lat", "lng", "captureDate", "createDate", "synced"}, "synced=?", new String[]{"0"}, null, null, null, null);
+                "lat", "lng", "captureDate", "synced"}, "synced=?", new String[]{"0"}, null, null, null, null);
 
         List<Location> locations = new ArrayList<Location>();
 
@@ -143,14 +142,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 loc.setLat(cursor.getDouble(cursor.getColumnIndex("lat")));
                 loc.setLng(cursor.getDouble(cursor.getColumnIndex("lng")));
                 loc.setCaptureDate(cursor.getLong(cursor.getColumnIndex("captureDate")));
-                loc.setCreateDate(cursor.getLong(cursor.getColumnIndex("createDate")));
-                loc.setCreateDate(cursor.getLong(cursor.getColumnIndex("synced")));
+                loc.setSynced(cursor.getInt(cursor.getColumnIndex("synced")));
 
                 locations.add(loc);
 
                 cursor.moveToNext();
 
-                Log.e(TAG,String.valueOf(loc.getId()));
+                Log.e(TAG, String.valueOf(loc.getId()));
+                Log.e(TAG,String.valueOf(DateFormat.format("MM/dd/yyyy hh:mm:ss", loc.getCaptureDate())));
 
             }
         }
