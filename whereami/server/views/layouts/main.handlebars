@@ -8,7 +8,7 @@
     <title>root</title>
 
     <!-- build:css stylesheets/foundation.min.css -->
-    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/foundation.css" />
+    <link rel="stylesheet" href="stylesheets/foundation.css" />
     <!-- /build -->
 
     <!-- build:css stylesheets/site.min.css -->
@@ -20,6 +20,44 @@
 <body>
 
     {{{body}}}
+
+
+    <!-- build:js js/jquery.min.js -->
+    <script src="../bower_components/jquery/dist/jquery.js "></script>
+    <!-- /build -->
+    <!-- build:js js/foundation.min.js -->
+    <script src="../bower_components/foundation-sites/dist/foundation.js "></script>
+    <!-- /build -->
+
+    <!-- build:js js/app.min.js -->
+    <script src="javascripts/site.js "></script>
+    <!-- /build -->
+
+
+
+    <script>
+    $(window).on("load", function(e) {
+      $('#intro').scrollnfade();
+      $('#sporty').scrollnfade();
+    });
+
+    $(window).on("resize", function(e) {
+      $(document).scrollnfadeReinit(); // do this only once
+
+      $('#intro').scrollnfade();
+      $('#sporty').scrollnfade();
+    });
+
+    $('a').click(function() {
+
+      if (($.attr(this, 'href') !== undefined) && (($.attr(this, 'href')).substring(0, 1) == "#")) {
+        $('html, body').animate({
+          scrollTop: $($.attr(this, 'href')).offset().top
+        }, 800);
+        return false;
+      }
+    });
+    </script>
 
 </body>
 </html>

@@ -112,7 +112,8 @@ grunt.initConfig({
         src: ['*.scss'],
         dest: 'public/stylesheets',
         ext: '.css'
-      }]
+      },
+    ]
     }
   },
   htmlmin: {
