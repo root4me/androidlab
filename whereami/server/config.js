@@ -25,11 +25,6 @@ var production = {
   }
 };
 
-if (process.env.NODE_ENV === undefined)
-{
-  console.log('Start with node env parameter : NODE_ENV=development/production npm start');
-}
-
 if (process.env.NODE_ENV === 'development') {
   module.exports = local;
 }

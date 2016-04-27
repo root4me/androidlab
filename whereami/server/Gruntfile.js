@@ -58,7 +58,7 @@ grunt.initConfig({
     appFiles: {
       files: [{
         expand: true,
-        src: ['app.js', 'config.js' , 'bower.json' , 'package.json', 'data/**/*','bin/**/*'],
+        src: ['app.js', 'config.js' , 'bower.json' , 'package.json', 'routes/**/*', 'data/**/*','bin/**/*'],
         dest: '<%= config.dist %>',
       }]
     },
@@ -140,7 +140,7 @@ grunt.initConfig({
       tasks: ['sass']
     },
     express: {
-      files: ['**/*.js', '**/*.handlebars'],
+      files: ['public/**/*.js', 'views/**/*.handlebars', '*.js'],
       tasks: ['express:dev'],
       options: {
         spawn: false
@@ -154,7 +154,7 @@ grunt.initConfig({
     },
     dev: {
       options: {
-        script: 'bin/www',
+        script: 'server.js',
       }
     }
   },
@@ -168,14 +168,12 @@ grunt.loadNpmTasks('grunt-express-server');
 grunt.registerTask('default', ['usage']);
 grunt.registerTask('dev', ['sass', 'express', 'watch']);
 grunt.registerTask('build', ['clean:dist','sass', 'copy', 'processhtml', 'cssmin', 'uglify', 'htmlmin']);
-grunt.registerTask('build-nomin', ['clean:dist','sass', 'copy:distimg', 'processhtml']);
 
 grunt.registerTask('usage', 'display usage parameters', function() {
   console.log("usage :");
   console.log("\t grunt clean:dist - cleans /dist folder");
   console.log("\t grunt dev - development mode");
   console.log("\t grunt build - build and update minimized version to /dist folder");
-  console.log("\t grunt build-nomin  - build and update non minified version to /dist folder");
 });
 
 // add sass to the grunt file

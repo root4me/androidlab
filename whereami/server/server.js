@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('starter-webapp:server');
+var app = require('./app');
+var debug = require('debug')('whereami:server');
 var http = require('http');
 
 /**
@@ -28,6 +28,9 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+console.log("environemnt (NODE_ENV) : " + app.get('env'));
+console.log("port :  " + app.get('port'));
 
 /**
  * Normalize a port into a number, string, or false.

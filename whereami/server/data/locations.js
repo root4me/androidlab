@@ -1,8 +1,6 @@
 var mh = require('./mongodbHelper');
 var config = require('../config');
 
-console.log(config.database.server);
-
 var getAll = function(callback){
   mh.getAll(config.database.server,config.database.port,config.database.db,'locations', function(err,data){
     callback(err,data);
