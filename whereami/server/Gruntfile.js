@@ -58,11 +58,10 @@ grunt.initConfig({
     appFiles: {
       files: [{
         expand: true,
-        src: ['app.js', 'config.js' , 'bower.json' , 'package.json', 'routes/**/*', 'data/**/*','bin/**/*'],
+        src: ['app.js', 'config.js' , 'server.js', 'bower.json' , 'package.json', 'routes/**/*', 'data/**/*'],
         dest: '<%= config.dist %>',
       }]
     },
-
   },
 
   uglify: {
