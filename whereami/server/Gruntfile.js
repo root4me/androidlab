@@ -139,7 +139,7 @@ grunt.initConfig({
       tasks: ['sass']
     },
     express: {
-      files: ['public/**/*.js', 'views/**/*.handlebars', '*.js'],
+      files: ['public/**/*.js', 'views/**/*.handlebars', '*.js', 'data/**/*.js', 'routes/**/*.js'],
       tasks: ['express:dev'],
       options: {
         spawn: false

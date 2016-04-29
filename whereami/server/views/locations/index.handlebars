@@ -1,15 +1,56 @@
 
 <h3>locations</h3>
 
+<div class="row">
+  <div class="large-3 columns">
+    Longitude
+  </div>
+  <div class="large-3 columns">
+    Latitude
+  </div>
+  <div class="large-3 columns">
+    Captured
+  </div>
+  <div class="large-3 columns">
+    Created
+  </div>
+</div>
+
 {{#each locations}}
-{{ longitude }} : {{ latitude }} : {{ captured }} : {{ created }} </br>
+<div class="row">
+  <div class="large-3 columns">
+    {{ longitude }}
+  </div>
+  <div class="large-3 columns">
+    {{ latitude }}
+  </div>
+  <div class="large-3 columns">
+    {{ captured }}
+  </div>
+  <div class="large-3 columns">
+    {{ created }}
+  </div>
+</div>
 {{/each}}
 
+
 <form method="post" >
-
-<input type="text" name="txtCountry" id="txtCountry" />
-<input type="text" name="txtCapital" id="txtCapital" />
-
-<input type="submit" />
-
+  <div class="row">
+    <div class="large-3 columns">
+      <input type="text" name="txtLongitude" id="txtLongitude" />
+    </div>
+    <div class="large-3 columns">
+      <input type="text" name="txtLatitude" id="txtLatitude" />
+    </div>
+    <div class="large-3 columns">
+      <input type="text" name="txtCaptured" id="txtCaptured" />
+    </div>
+    <div class="large-3 columns">
+      <input type="submit" class="button" />
+    </div>
+  </div>
 </form>
+
+<script>
+
+</script>
