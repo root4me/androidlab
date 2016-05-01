@@ -41,7 +41,7 @@ $('#editableRows').on('click','[id^=saveButton]', function(){
   console.log(JSON.parse(d));
 
   $.ajax({
-    url: 'http://localhost:3000/api/locations',
+    url: '/api/locations',
     type: 'PUT',
     data: JSON.parse(d),
     success: function (result) {
@@ -64,7 +64,7 @@ $('#editableRows').on('click','[id^=deleteButton]', function(){
   var d = "{ \"id\" : \"" + id + "\" }";
 
   $.ajax({
-    url: 'http://localhost:3000/api/locations',
+    url: '/api/locations',
     type: 'DELETE',
     data: JSON.parse(d),
     success: function (result) {
@@ -99,7 +99,7 @@ $('#addButton').click(function() {
   console.log(JSON.parse(d));
 
   $.ajax({
-    url: 'http://localhost:3000/locations',
+    url: '/locations',
     type: 'POST',
     data: JSON.parse(d),
     success: function (result) {

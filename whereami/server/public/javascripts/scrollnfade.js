@@ -42,7 +42,6 @@
         }
       });
 
-
       for (var i = 0; i < elements.length; i++) {
         element = elements[i];
         elementOverlay = elementsOverlay[i];
@@ -65,7 +64,6 @@
     };
 
     var init = function(element) {
-      console.log('inside init');
       window.addEventListener('scroll', onScroll, false);
 
       elements.push(element);
