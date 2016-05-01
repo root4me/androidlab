@@ -60,27 +60,44 @@ var insert = function(server, port, dbName, collectionName, data, callback){
     console.log(data);
 
     collection.insertOne(data , function(err,docs){
-
-      console.log(err);
       callback(err,docs);
     });
   });
-}
+};
 
+var update = function(server, port, dbName, collectionName, id, data, callback){
+  mongo.connect(url(server,port, dbName), function(err, db) {
+    console.log("Connected correctly to server for update");
+    var collection = db.collection(collectionName);
+
+    data.updated = Date();
+    console.log(data);
+
+    collection.update(
+      { '_id' : ObjectID(id) },
+      { $set: data },
+      function(err,docs){
+        callback(err,docs);
+    });
+  });
+};
 
 var del = function(server, port, dbName, collectionName, id, callback){
 
   mongo.connect(url(server,port, dbName), function(err, db) {
-    console.log("Connected correctly to server");
+    console.log("Connected correctly to server for delete");
     var collection = db.collection(collectionName);
     var objid = new ObjectID(id);
 
-    collection.deleteOne({_id: objid},function(err, docs) {
-            callback(err,docs);
+    collection.deleteOne({_id: ObjectID(id)},function(err, docs) {
+      console.log(docs);
+      console.log(err);
+      callback(err,docs);
     });
   });
 };
 
 module.exports.getAll = getAll;
 module.exports.insert = insert;
+module.exports.update = update;
 module.exports.delete = del;

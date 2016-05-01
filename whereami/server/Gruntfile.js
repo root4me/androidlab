@@ -64,9 +64,19 @@ grunt.initConfig({
     },
   },
 
+  concat: {
+    options: {
+      //separator: ';',
+    },
+    dist: {
+      src: ['public/javascripts/scrollnfade.js', 'public/javascripts/home.js'],
+      dest: 'public/javascripts/site.js',
+    },
+  },
+
   uglify: {
     options: {
-      //                banner: '/*Packaged on : <%=grunt.template.today("yyyy-mm-dd")%>*/\n'
+
     },
     dist: {
       files: [{
@@ -79,7 +89,7 @@ grunt.initConfig({
         cwd: 'public',
         src: '<%= config.srcjs %>',
         dest: '<%= config.dist %>/public/javascripts',
-        ext: '.min.js'
+        ext: '.js'
       }]
     },
   },
@@ -124,7 +134,7 @@ grunt.initConfig({
       files: [{
         expand: true,
         cwd: '<%= config.dist %>',
-        src: '**/*.html',
+        src: '**/*.handlebars',
         dest: '<%= config.dist %>',
       }]
     },

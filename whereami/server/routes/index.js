@@ -12,8 +12,9 @@ router.get('/api/', function(req, res, next) {
 router.get('/', function(req, res, next) {
 
   var status = { status: "alive" };
-  res.render("home");
-
+  res.render("home" ,{
+    scripts : [{'script' : 'scrollnfade.js'} , {'script' : 'home.js'} ]
+  });
 });
 
 module.exports = router;
