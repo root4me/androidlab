@@ -124,6 +124,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete("Locations",null,null);
     }
 
+    public void deleteById(int id)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Locations", "id=" + id, null);
+    }
+
     private String formatedDate(Date date) {
         return (String) DateFormat.format("MM/dd/yyyy hh:mm:ss", date);
     }

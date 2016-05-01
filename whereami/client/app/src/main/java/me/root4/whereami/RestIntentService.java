@@ -119,6 +119,7 @@ public class RestIntentService extends IntentService {
                 if (res.has("_id"))
                 {
                     Log.d(TAG,"save worked");
+                    db.deleteById(locations.get(i).getId());
                 }
                 else
                 {

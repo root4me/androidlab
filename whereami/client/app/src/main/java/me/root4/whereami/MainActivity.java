@@ -145,11 +145,11 @@ public class MainActivity extends AppCompatActivity
             db.deleteAllLocations();
         }
         if (id == R.id.nav_send) {
-            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Not implemented", Snackbar.LENGTH_LONG).show();
+            Snackbar.make((RelativeLayout) findViewById(R.id.activity_main_content), "Sending locations to server", Snackbar.LENGTH_LONG).show();
 
             Intent intent = new Intent(this, RestIntentService.class);
             intent.setAction(RestIntentService.ACTION_GETLOCATIONS);
-            intent.putExtra(RestIntentService.EXTRA_URL, "http://192.168.122.1:3000/api/locations");
+            intent.putExtra(RestIntentService.EXTRA_URL, "http://root4.me/api/locations");
 
             startService(intent);
 
