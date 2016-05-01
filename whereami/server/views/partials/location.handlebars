@@ -1,0 +1,18 @@
+<div class="row" id="editableRow-{{ _id }}" data-id="{{ _id }}" >
+  <div class="large-2 columns" contenteditable="true" data-name="longitude" >
+    {{ longitude }}
+  </div>
+  <div class="large-2 columns" contenteditable="true" data-name="latitude" >
+    {{ latitude }}
+  </div>
+  <div class="large-3 columns" contenteditable="true" data-name="captured" >
+    {{ captured }}
+  </div>
+  <div class="large-3 columns" >
+    {{ created }}
+  </div>
+  <div class="large-2 columns">
+    <input id="saveButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button" value="save" style="display:none;" />
+    <input id="deleteButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button alert" value="delete"  />
+  </div>
+</div>

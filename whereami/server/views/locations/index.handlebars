@@ -2,10 +2,10 @@
 <h3>locations</h3>
 
 <div class="row">
-  <div class="large-3 columns">
+  <div class="large-2 columns">
     Longitude
   </div>
-  <div class="large-3 columns">
+  <div class="large-2 columns">
     Latitude
   </div>
   <div class="large-3 columns">
@@ -14,43 +14,31 @@
   <div class="large-3 columns">
     Created
   </div>
-</div>
+  <div class="large-2 columns">
 
-{{#each locations}}
-<div class="row">
-  <div class="large-3 columns">
-    {{ longitude }}
-  </div>
-  <div class="large-3 columns">
-    {{ latitude }}
-  </div>
-  <div class="large-3 columns">
-    {{ captured }}
-  </div>
-  <div class="large-3 columns">
-    {{ created }}
   </div>
 </div>
-{{/each}}
+
+<div id="editableRows">
+  {{#each locations}}
+  {{> location}}
+  {{/each}}
+</div>
 
 
-<form method="post" >
-  <div class="row">
-    <div class="large-3 columns">
-      <input type="text" name="txtLongitude" id="txtLongitude" />
-    </div>
-    <div class="large-3 columns">
-      <input type="text" name="txtLatitude" id="txtLatitude" />
-    </div>
-    <div class="large-3 columns">
-      <input type="text" name="txtCaptured" id="txtCaptured" />
-    </div>
-    <div class="large-3 columns">
-      <input type="submit" class="button" />
-    </div>
+<div id="addRow" class="row">
+  <div class="large-2 columns">
+    <input type="text" name="txtLongitude" id="txtLongitude" data-name="longitude" />
   </div>
-</form>
-
-<script>
-
-</script>
+  <div class="large-2 columns">
+    <input type="text" name="txtLatitude" id="txtLatitude" data-name="latitude" />
+  </div>
+  <div class="large-3 columns">
+    <input type="text" name="txtCaptured" id="txtCaptured" data-name="captured" />
+  </div>
+  <div class="large-3 columns">
+    <input type="button" class="button" id="addButton" value="save"/>
+  </div>
+  <div class="large-2 columns">
+  </div>
+</div>
