@@ -1,3 +1,4 @@
+/*
 $(window).on("load", function(e) {
   $('#intro').scrollnfade();
   $('#sporty').scrollnfade();
@@ -9,6 +10,7 @@ $(window).on("resize", function(e) {
   $('#intro').scrollnfade();
   $('#sporty').scrollnfade();
 });
+*/
 
 $('a').click(function() {
 
