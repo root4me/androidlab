@@ -21,7 +21,7 @@ var production = {
   database : {
     server: 'localhost',
     port: 27017,
-    db: 'whereamiDb'
+    db: 'prod_whereamiDb'
   }
 };
 
