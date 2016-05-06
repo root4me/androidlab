@@ -17,4 +17,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/index', function(req, res, next) {
+
+  res.render("index" ,{
+    scripts : [ {'script' : '/javascripts/site.js'}  ]
+  });
+});
+
 module.exports = router;
