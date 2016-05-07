@@ -24,6 +24,21 @@ body {
 .content-wrapper {
   flex: 1; }
 
+.section-height-60 {
+  height: 60vh; }
+  .section-height-60 h1 {
+    background: #4CAF50;
+    color: white;
+    text-align: center; }
+  .section-height-60 .section-header {
+    padding-top: 20%; }
+  @media only screen and (min-width: 40.063em) {
+    .section-height-60 .section-header {
+      padding-top: 40%; } }
+  @media only screen and (min-width: 64.063em) {
+    .section-height-60 .section-header {
+      padding-top: 25%; } }
+
 .hero {
   height: 80vh; }
   .hero .intro-text {
@@ -149,7 +164,6 @@ body {
     background-color: #4CAF50; }
     .card .header img {
       max-height: 240px;
-      min-height: 240px;
       width: 100%; }
     .card .header .title {
       position: absolute;

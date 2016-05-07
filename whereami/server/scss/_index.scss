@@ -1,0 +1,28 @@
+
+.section-height-60
+{
+  height: 60vh;
+
+  h1
+  {
+    background: $primary-color;
+    color: $primary-light-text-color;
+    text-align: center;
+  }
+
+  .section-header {
+    padding-top: 20%;
+  }
+
+  @media only screen and (min-width: 40.063em) {
+    .section-header {
+      padding-top: 40%;
+    }
+  }
+
+  @media only screen and (min-width: 64.063em) {
+    .section-header {
+      padding-top: 25%;
+    }
+  }
+}
