@@ -1,11 +1,6 @@
+//debug
+//* { outline: 1px dotted green }
 
 @import 'base';
 
-@import 'index';
-@import 'home';
-@import 'card';
-
-@import 'topnav';
-@import 'post';
-@import 'code';
-@import 'footer'
+@import '_index';
