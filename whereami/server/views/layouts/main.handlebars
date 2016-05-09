@@ -19,8 +19,13 @@
 
 <body>
 
-    {{{body}}}
+  <div class="alert callout" data-closable id="errorAlert" style="display:none;">
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
 
+    {{{body}}}
 
     <!-- build:js javascripts/jquery.js -->
     <script src="../bower_components/jquery/dist/jquery.js "></script>

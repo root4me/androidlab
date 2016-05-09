@@ -21,15 +21,63 @@ body {
 .content-wrapper {
   flex: 1; }
 
+.header {
+  margin-bottom: 1em;
+  height: 40vh;
+  background: -moz-linear-gradient(45deg, #99daff 0%, teal 100%);
+  /* ff3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #99daff), color-stop(100%, teal));
+  /* safari4+,chrome */
+  background: -webkit-linear-gradient(45deg, #99daff 0%, teal 100%);
+  /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(45deg, #99daff 0%, teal 100%);
+  /* opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #99daff 0%, teal 100%);
+  /* ie10+ */
+  background: linear-gradient(360deg, #388E3C 0%, #4CAF50 100%);
+  /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#008080', endColorstr='#99DAFF',GradientType=1 );
+  /* ie6-9 */ }
+  .header .header-content {
+    padding-top: 20vh;
+    color: white;
+    text-align: center; }
+    .header .header-content .content {
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      background: black;
+      border-radius: 5px;
+      border: 1px solid #5cb3c3; }
+
+.weather-overview {
+  width: 100%;
+  margin: 0;
+  left: 0;
+  text-align: center; }
+  .weather-overview .forecast {
+    font-size: 1.25rem; }
+  .weather-overview .city {
+    font-size: 1.5625rem; }
+  .weather-overview .temperatureValue {
+    font-size: 1.25rem; }
+
 .article-feed {
   width: 100%;
   margin: 0;
   left: 0;
   min-height: 100px; }
+  .article-feed .title {
+    color: #212121; }
+  .article-feed .postedby {
+    color: #727272;
+    margin: 0px 0 10px 0px;
+    display: inline-block; }
 
-.card {
+.card, .card-with-leftborder {
   padding: 10px;
-  margin: 0 auto 10px;
+  margin: 0 auto 1px;
   background: white;
   border-radius: 2px;
   display: block;
@@ -41,9 +89,12 @@ body {
   /* Firefox 3.5 - 3.6 */
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
   /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  border-top: 1px solid rgba(0, 0, 0, 0.12); }
+
+.card-with-leftborder {
   border-left: 10px solid #4CAF50; }
 
-.card:hover {
+.card-with-leftborder:hover {
   z-index: 20;
   -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.23);
   /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
@@ -57,13 +108,5 @@ body {
   -o-transition: .3s ease;
   transition: .3s ease;
   border-left: 10px solid #388E3C; }
-
-.card .title {
-  color: #212121; }
-
-.card .postedby {
-  color: #727272;
-  margin: 0px 0 10px 0px;
-  display: inline-block; }
 
 /*# sourceMappingURL=site.css.map */
