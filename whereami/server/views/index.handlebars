@@ -3,9 +3,6 @@
 
 <div class="off-canvas-wrapper">
   <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-
-
-
     <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
       <!-- Menu -->
       <ul class="vertical menu">
@@ -32,58 +29,82 @@
 
       </div>
 
-<!--
+      <!--
       <div class="row">
-        <div class="large-12 columns">
-          <input type="search" placeholder="Search .. need to put some padding on top" id="search" >
+      <div class="large-12 columns">
+      <input type="search" placeholder="Search .. need to put some padding on top" id="search" >
+    </div>
+  </div>
+-->
+<input type="hidden" id="ip" value="{{ ip }}"  />
+
+<div class="row">
+  <div class="small-12 medium-12 large-4 columns">
+
+    <section class="weather-overview">
+      <div class="card">
+        <div class="city" id="wo_city">city n/a</div>
+        <div class="temperature">
+          <span id="wo_temperature" class="temperatureValue" >temperature  n/a</span>
+        </div>
+        <div>
+           <span id="wo_weather">weatehr  n/a</span>
+        </div>
+        <div class="additionaInfo">
+          <span id="wo_wind">wind  n/a</span>
+        </div>
+        <hr />
+        <div class="forecast">Evening forecast (sample)</div>
+        <div class="temperature">
+          <span>60.05 °F</span> <span> Clear sky</span>
+        </div>
+        <div class="special">
+          <span>No rain or snow.</span> <span>wind 7.2 , 165 deg </span>
         </div>
       </div>
--->
+    </section>
+    <br />
+  </div>
 
-      <div class="row">
-        <div class="small-12 medium-12 large-4 columns">
-
-          <section class="weather-overview">
-            <div class="card">
-              <div class="city">Chicago, IL</div>
-              <div class="temperature">
-                <span class="temperatureValue">60.05 °F</span> <span> Clear sky</span>
-              </div>
-              <div class="additionaInfo">
-                <span>No rain or snow.</span> <span>wind 7.2 , 165 deg </span>
-              </div>
-              (sample data)
-              <hr />
-              <div class="forecast">Evening forecast</div>
-              <div class="temperature">
-                <span>60.05 °F</span> <span> Clear sky</span>
-              </div>
-              <div class="special">
-                <span>No rain or snow.</span> <span>wind 7.2 , 165 deg </span>
-              </div>
-            </div>
-          </section>
+  <div class="small-12 medium-12 large-8 columns">
+    <section id="news-article-feed" class="article-feed">
+<!--
+      <a href="http://static.latimes.com/oxycontin-part1" target="_blank">
+        <div class="card-with-leftborder">
+          <h5 class="title">OxyContin's 12-hour problem</h5>
+          <span class="postedby">posted at hn by sergeant3 on 05/07/2016</span>
         </div>
-
-        <div class="small-12 medium-12 large-8 columns">
-          <section id="news-article-feed" class="article-feed">
-
-            <!--
-            <a href="http://static.latimes.com/oxycontin-part1" target="_blank">
-            <div class="card-with-leftborder">
-            <h5 class="title">OxyContin's 12-hour problem</h5>
-            <span class="postedby">posted at hn by sergeant3 on 05/07/2016</span>
-            <p></p>
-            <span class="readmore"></span>
-          </div>
-        </a>
-      -->
-
+      </a>
+-->
     </section>
   </div>
 
 </div>
 
+<!-- footer -->
+<footer class="footer">
+  <div class=row>
+    <!-- Contact Details -->
+
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <p class="slogan"></p>
+      <p class="links">
+        <!--
+        <a href="#">Home</a>
+        <a href="#">Terms</a>
+        <a href="#">Top</a>
+      -->
+    </p>
+    <p class="copywrite">© 2016 .... Hand crafted with care. Copy, Right &#9786; </p>
+  </div>
 </div>
+</footer>
+<!-- end footer -->
+
+</div>
+
 </div>
 </div>

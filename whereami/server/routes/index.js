@@ -18,8 +18,11 @@ router.get('/home', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
+  console.log(req.ip);
+  console.log(req.ips);
 
   res.render("index" ,{
+    ip: (req.ip).replace('::ffff:',''),
     scripts : [ {'script' : '/javascripts/index.js'} , {'script' : '/javascripts/site.js'}  ]
   });
 });

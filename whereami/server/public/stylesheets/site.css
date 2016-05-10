@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html {
   font-size: 16px; }
 
@@ -108,5 +109,42 @@ body {
   -o-transition: .3s ease;
   transition: .3s ease;
   border-left: 10px solid #388E3C; }
+
+.footer {
+  background-color: #212121;
+  color: white; }
+
+.footer p {
+  margin-top: 10px; }
+
+.footer p.slogan {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1.8rem;
+  margin: 0 0 1rem; }
+
+.footer p.copywrite {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.875rem;
+  margin: 0; }
+
+.footer .links a {
+  list-style: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 3rem 0 2rem;
+  margin: 0; }
+
+.footer .links a::after {
+  content: "•";
+  padding: 0 0.4rem 0 0.8rem; }
+
+.footer .links a:last-child::after {
+  content: "";
+  padding: 0 0.4rem 0 0.8rem; }
+
+.button {
+  background: #4CAF50; }
+
+.button:hover {
+  background: #388E3C; }
 
 /*# sourceMappingURL=site.css.map */
