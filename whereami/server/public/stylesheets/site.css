@@ -110,6 +110,84 @@ body {
   transition: .3s ease;
   border-left: 10px solid #388E3C; }
 
+/* post styles _post.scss */
+.post {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.137255) 0px 4px 5px 0px, rgba(0, 0, 0, 0.117647) 0px 1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 2px 4px -1px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: white; }
+  .post .header {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    position: relative;
+    min-height: 100px;
+    background-color: #4CAF50; }
+    .post .header img {
+      max-height: 200px;
+      width: 100%; }
+    .post .header .title {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      padding: 20px; }
+      .post .header .title h3 {
+        font-family: "Roboto Condensed", sans-serif, Helvetica;
+        color: white;
+        margin: 0px;
+        padding: 0px; }
+      .post .header .title h4 {
+        font-family: "Roboto Condensed", sans-serif, Helvetica;
+        color: white;
+        margin: 0px;
+        padding: 0px; }
+
+.post .authorinfo {
+  align-items: center;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.26);
+  display: flex;
+  flex-direction: colum;
+  font-size: 13px;
+  font-weight: normal;
+  justify-content: flex-start;
+  padding: 20px; }
+  .post .authorinfo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px; }
+  .post .authorinfo span {
+    color: rgba(0, 0, 0, 0.26);
+    display: block;
+    padding-left: 5px; }
+
+.post .content {
+  align-items: center;
+  color: #727272;
+  padding: 20px; }
+  .post .content pre {
+    background-color: rgba(0, 0, 0, 0.12);
+    padding: 2px; }
+
+.post .action {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 1.3rem; }
+  .post .action a {
+    color: #FF9800;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    text-decoration: none; }
+
+.post-content {
+  margin-top: 1em; }
+
+/* end post styles _post.scss */
 .footer {
   background-color: #212121;
   color: white; }
