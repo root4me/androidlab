@@ -8,11 +8,11 @@
   <title>root4me</title>
 
   <!-- build:css stylesheets/foundation.min.css -->
-  <link rel="stylesheet" href="stylesheets/foundation.css" />
+  <link rel="stylesheet" href="/stylesheets/foundation.css" />
   <!-- /build -->
 
   <!-- build:css stylesheets/site.min.css -->
-  <link rel="stylesheet" href="stylesheets/site.css" />
+  <link rel="stylesheet" href="/stylesheets/site.css" />
   <!-- /build -->
 
 </head>
@@ -25,17 +25,18 @@
     </button>
   </div>
 
-
   <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
       <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+
+        <div class="menu-title">
+        </div>
+
         <!-- Menu -->
         <ul class="vertical menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Recent</a></li>
-          <li><a href="#">Top picks</a></li>
-          <li><a href="#">How-to</a></li>
-          <li><a href="#">Locations</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/locations">Locations</a></li>
+          <li><a href="/articles">Articles</a></li>
         </ul>
       </div>
       <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right"></div>
@@ -47,91 +48,72 @@
               <span class="title-bar-title">root4.me</span>
             </div>
           </div>
-
-          <div class="header-content">
-            <span class="content">$ sudo whoami</span>
-          </div>
-
         </div>
 
-        <!--
         <div class="row">
-        <div class="large-12 columns">
-        <input type="search" placeholder="Search .. need to put some padding on top" id="search" >
-      </div>
-    </div>
-  -->
-  <input type="hidden" id="ip" value="{{ ip }}"  />
+          <div class="column large-8 large-centered post">
+            <article>
+              <header>
+                <span class="post-title"><h2>Title of the post</h2></span>
+                <span class="post-meta">by root4me <time datetime="08/02/2015">08/02/2015</time> </span>
+              </header>
 
+              <section class="post-content">
+                <p>One day, I decided that VM is too slow and I must partition the disk in my laptop and make it dual boot into ubuntu.Thought process was, I can assess if I will end up booting into ubuntu more or windows. Well, it is safe to say that I
+                  ended up booting into ubuntu all the time. I have almost forgotten that this laptop can be booted into windows. Earlier this year, I bought a new laptop and I ended up promptly installing Ubuntu on it. </p>
+                <p>One day, I decided that VM is too slow and I must partition the disk in my laptop and make it dual boot into ubuntu.Thought process was, I can assess if I will end up booting into ubuntu more or windows. Well, it is safe to say that I
+                  ended up booting into ubuntu all the time. I have almost forgotten that this laptop can be booted into windows. Earlier this year, I bought a new laptop and I ended up promptly installing Ubuntu on it. </p>
+                <p>One day, I decided that VM is too slow and I must partition the disk in my laptop and make it dual boot into ubuntu.Thought process was, I can assess if I will end up booting into ubuntu more or windows. Well, it is safe to say that I
+                  ended up booting into ubuntu all the time. I have almost forgotten that this laptop can be booted into windows. Earlier this year, I bought a new laptop and I ended up promptly installing Ubuntu on it. </p>
+                <p>One day, I decided that VM is too slow and I must partition the disk in my laptop and make it dual boot into ubuntu.Thought process was, I can assess if I will end up booting into ubuntu more or windows. Well, it is safe to say that I
+                  ended up booting into ubuntu all the time. I have almost forgotten that this laptop can be booted into windows. Earlier this year, I bought a new laptop and I ended up promptly installing Ubuntu on it. </p>
+              </section>
+              <section class="post-footer">
 
-  <div class="row" >
-    <div class="column large-8 large-centered post"  >
-      <article>
-        <header>
-          <span class="post-title"><h2>This could be a long heading for the page </h2></span>
-          <span class="post-meta">by xyz on <time datetime="2016-05-07">7 May 2016</time> </span>
-        </header>
+                <div class="row">
+                  <hr/>
+                  <div class="large-6 medium-6 small-12 columns">
+                    <a href="why-choose-diatone-fpv250-frame.html">Why choose Diatone FPV250 frame</a>
+                  </div>
+                  <div class="large-6 medium-6 small-12 columns">
+                    <a class="post-footer-next" href="how-to-remove-user-name-from-terminal-prompt.html">How to remove user name from Terminal prompt</a>
+                  </div>
+                </div>
+                <br />
+              </section>
+            </article>
 
-        <section class="post-content">
-          <p>I have been using ubuntu as my primary operating system at home for over a year now. Till then, it was an on and off relationship with linux, mostly by spinning up VM and trying out different distros of linux.  </p>
-          <p>One day, I decided that VM is too slow and I must partition the disk in my laptop and make it dual boot into ubuntu.Thought process was, I can assess if I will end up booting into ubuntu more or windows. Well, it is safe to say that I ended up booting into ubuntu all the time. I have almost forgotten that this laptop can be booted into windows. Earlier this year, I bought a new laptop and I ended up promptly installing Ubuntu on it.  </p>
-          <p>That being said, I am still not an expert with the OS and find myself googling for commands and how to do things. Through these pages, I am going to write down some of the things I have learned and some others I do not want to forget.  </p>
-        </section>
-      </article>
-
-      <section class="post-footer">
-
-      <div class="row">
-          <hr/>
-          <div class="large-6 medium-6 small-12 columns">
-              <a href="how-to-remove-user-name-from-terminal-prompt.html">How to remove user name from Terminal prompt</a>
           </div>
-          <div class="large-6 medium-6 small-12 columns">
-              <a class="post-footer-next" href="beagle-bone-black.html">Beagle Bone Black</a>
-          </div>
-          <hr/>
-      </div>
-</section>
+        </div>
 
+        <!-- footer -->
+        <footer class="footer">
+          <div class="row">
+            <div class="column large-8 large-centered">
+              <br />
+              <p class="links">
+                <a href="/">Home</a>
+                <a href="#">Top</a>
+              </p>
+              <p class="copywrite">&copy; 2016 .... Hand crafted with care. Copy, Right &#9786; </p>
+            </div>
+          </div>
+        </footer>
+        <!-- end footer -->
+
+      </div>
     </div>
   </div>
 
+  <!-- build:js javascripts/jquery.js -->
+  <script src="../bower_components/jquery/dist/jquery.js "></script>
+  <!-- /build -->
+  <!-- build:js javascripts/foundation.js -->
+  <script src="../bower_components/foundation-sites/dist/foundation.js "></script>
+  <!-- /build -->
 
-
-  <!-- footer -->
-  <footer class="footer">
-    <div class=row>
-      <!-- Contact Details -->
-
-    </div>
-
-    <div class="row">
-      <div class="small-12 columns">
-        <p class="slogan"></p>
-        <p class="links">
-          <!--
-          <a href="#">Home</a>
-          <a href="#">Terms</a>
-          <a href="#">Top</a>
-        -->
-      </p>
-      <p class="copywrite">© 2016 .... Hand crafted with care. Copy, Right &#9786; </p>
-    </div>
-  </div>
-</footer>
-<!-- end footer -->
-
-</div>
-
-</div>
-</div>
-
-<!-- build:js javascripts/jquery.js -->
-<script src="../bower_components/jquery/dist/jquery.js "></script>
-<!-- /build -->
-<!-- build:js javascripts/foundation.js -->
-<script src="../bower_components/foundation-sites/dist/foundation.js "></script>
-<!-- /build -->
+  <script src="/javascripts/site.js "></script>
 
 </body>
+
 </html>

@@ -2,44 +2,24 @@
   background-color: $primary-dark-text-color;
   color: $primary-light-text-color;
   //text-align: center;
+  min-height: 10em;
 
-}
-.footer p
-{
-  margin-top: 10px;
-}
-.footer p.slogan {
-  color: $disabled-light-text-color;
-  font-size: 1.8rem;
-  margin: 0 0 1rem;
-}
-.footer p.copywrite {
-  color: $disabled-light-text-color;
-  font-size: 0.875rem;
-  margin: 0;
-}
-.footer .links a {
-  list-style: none;
-  color: $secondary-light-text-color;
-  padding: 3rem 0 2rem;
-  margin: 0;
-}
-.footer .links a::after {
-  content: "•";
-  padding: 0 0.4rem 0 0.8rem;
-}
-.footer .links a:last-child::after {
-  content: "";
-  padding: 0 0.4rem 0 0.8rem;
-}
-
-
-
-.button
-{
-background: $primary-color;
-}
-.button:hover
-{
-background: $primary-color-dark;
+  .links a {
+    list-style: none;
+    color: $secondary-light-text-color;
+    padding: 3rem 0 2rem;
+    margin: 0;
+  }
+  .links a::after {
+    content: "•";
+    padding: 0 0.4rem 0 0.8rem;
+  }
+  .links a:last-child::after {
+    content: "";
+    padding: 0 0.4rem 0 0.8rem;
+  }
+  .copywrite {
+    color: $secondary-light-text-color;
+    font-size: 0.875rem;
+  }
 }
