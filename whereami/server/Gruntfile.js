@@ -44,6 +44,17 @@ module.exports = function(grunt) {
           ext: '.handlebars'
         }],
       },
+
+      distarticles: {
+        files: [{
+          expand: true,
+          cwd: 'public/articles',
+          src: ['**/*.html'],
+          dest: '<%= config.dist %>/public/articles',
+          ext: '.html'
+        }],
+      },
+
     },
 
     copy: {
@@ -52,15 +63,6 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'public',
           src: '<%= config.srcimg %>',
-          dest: '<%= config.dist %>/public',
-        }]
-      },
-
-      distarticles: {
-        files: [{
-          expand: true,
-          cwd: 'public',
-          src: '<%= config.srcarticles %>',
           dest: '<%= config.dist %>/public',
         }]
       },

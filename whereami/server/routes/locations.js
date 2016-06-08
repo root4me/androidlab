@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     // Going to get an array of rows from getAll. wrap it around a selector before supplying it to the view
     res.render('locations/index', {
       locations : data,
-      scripts : [{'script' : 'locations.js'}]
+      scripts : [{'script' : '/javascripts/locations.js'}]
     } );
   });
 });
