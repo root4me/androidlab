@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var locationsapi = require('./routes/locationsApi');
 var locations = require('./routes/locations');
+var todo = require('./routes/2do');
+var todoapi = require('./routes/2doApi');
 
 var exphbs  = require('express-handlebars');
 
@@ -42,6 +44,8 @@ if (app.get('env') === 'development')
 app.use('/', routes);
 app.use('/api/locations', locationsapi);
 app.use('/locations', locations);
+app.use('/2do', todo);
+app.use('/api/2do', todoapi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

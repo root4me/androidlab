@@ -6,7 +6,7 @@ $('#editableRows').on('keyup','[id^=editableRow]', function(){
   console.log(this.getAttribute('data-id'));
 
   $('#saveButton-' + $(this).data("id")).show();
-
+  $('#deleteButton-' + $(this).data("id")).hide();
 } );
 
 /*
@@ -49,6 +49,7 @@ $('#editableRows').on('click','[id^=saveButton]', function(){
       if (result.n > 0)
       {
         $('#saveButton-' + id).hide();
+        $('#deleteButton-' + id).show();
       }
     },
     error: function (x, status, error) {

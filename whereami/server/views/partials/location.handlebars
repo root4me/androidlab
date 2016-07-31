@@ -1,18 +1,24 @@
-<div class="row" id="editableRow-{{ _id }}" data-id="{{ _id }}" >
-  <div class="large-2 columns" contenteditable="true" data-name="longitude" >
-    {{ longitude }}
-  </div>
-  <div class="large-2 columns" contenteditable="true" data-name="latitude" >
-    {{ latitude }}
-  </div>
-  <div class="large-3 columns" contenteditable="true" data-name="captured" >
-    {{ captured }}
-  </div>
-  <div class="large-3 columns" >
-    {{ created }}
-  </div>
-  <div class="large-2 columns">
-    <input id="saveButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button" value="save" style="display:none;" />
-    <input id="deleteButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button alert" value="delete"  />
+<div class="row" id="editableRow-{{ _id }}" data-id="{{ _id }}">
+  <div class="small-12 columns">
+    <div class="card">
+      <div class="row">
+        <div class="large-2 columns" contenteditable="true" data-name="longitude">
+          {{ longitude }}
+        </div>
+        <div class="large-2 columns" contenteditable="true" data-name="latitude">
+          {{ latitude }}
+        </div>
+        <div class="large-3 columns" contenteditable="true" data-name="captured">
+          {{ captured }}
+        </div>
+        <div class="large-3 columns">
+          {{ created }}
+        </div>
+        <div class="large-2 columns">
+          <input id="saveButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button small-12" value="save" style="display:none;" />
+          <input id="deleteButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button small-12 alert" value="delete" />
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,18 @@
+<div class="row" id="editableRow-{{ _id }}" data-id="{{ _id }}">
+  <div class="small-12 columns">
+    <div class="card">
+      <div class="row" >
+        <div class="small-12 large-6 columns" contenteditable="true" data-name="task">
+          <span class="crud-fristColumn"> {{ task }}</span>
+        </div>
+        <div class="small-12 large-4 columns" contenteditable="true" data-name="comment">
+          {{ comment }}
+        </div>
+        <div class="small-12 medium-12 large-2 columns">
+          <input id="saveButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button small-12" value="save" style="display:none;" />
+          <input id="deleteButton-{{ _id }}" data-id="{{ _id }}" type="button" class="button secondary small-12" value="Done" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

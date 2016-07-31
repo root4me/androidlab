@@ -29,7 +29,7 @@ var getAll = function(server,port, dbName, collectionName, callback){
       callback(err,null);
       return;
     }
-    console.log("Connected to mongodb server");
+//    console.log("Connected to mongodb server");
     var collection = db.collection(collectionName);
 
     collection.find().toArray(function(err, docs) {
@@ -53,11 +53,11 @@ var getAll = function(server,port, dbName, collectionName, callback){
 var insert = function(server, port, dbName, collectionName, data, callback){
 
   mongo.connect(url(server,port, dbName), function(err, db) {
-    console.log("Connected correctly to server");
+//    console.log("Connected correctly to server");
     var collection = db.collection(collectionName);
 
     data.created = Date();
-    console.log(data);
+//    console.log(data);
 
     collection.insertOne(data , function(err,docs){
       callback(err,docs);
@@ -67,11 +67,11 @@ var insert = function(server, port, dbName, collectionName, data, callback){
 
 var update = function(server, port, dbName, collectionName, id, data, callback){
   mongo.connect(url(server,port, dbName), function(err, db) {
-    console.log("Connected correctly to server for update");
+//    console.log("Connected correctly to server for update");
     var collection = db.collection(collectionName);
 
     data.updated = Date();
-    console.log(data);
+//    console.log(data);
 
     collection.update(
       { '_id' : ObjectID(id) },
@@ -85,13 +85,13 @@ var update = function(server, port, dbName, collectionName, id, data, callback){
 var del = function(server, port, dbName, collectionName, id, callback){
 
   mongo.connect(url(server,port, dbName), function(err, db) {
-    console.log("Connected correctly to server for delete");
+//    console.log("Connected correctly to server for delete");
     var collection = db.collection(collectionName);
     var objid = new ObjectID(id);
 
     collection.deleteOne({_id: ObjectID(id)},function(err, docs) {
-      console.log(docs);
-      console.log(err);
+//      console.log(docs);
+//      console.log(err);
       callback(err,docs);
     });
   });

@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 
   res.render("index" ,{
     ip: (req.ip).replace('::ffff:',''),
-    scripts : [ {'script' : '/javascripts/index.js'} , {'script' : '/javascripts/site.js'}  ]
+    scripts : [ {'script' : '/javascripts/index.js'} ]
   });
 });
 

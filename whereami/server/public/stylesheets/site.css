@@ -110,6 +110,16 @@ body {
   transition: .3s ease;
   border-left: 10px solid #388E3C; }
 
+.crud-title {
+  width: 100%;
+  margin: 0;
+  left: 0;
+  text-align: center;
+  font-size: 1.5625rem; }
+
+.crud-fristColumn {
+  font-size: 1.25rem; }
+
 .off-canvas .menu-title {
   min-height: 2em; }
 

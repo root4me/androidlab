@@ -1,72 +1,42 @@
 <!Doctype html>
 
-<div class="off-canvas-wrapper">
-  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-    <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
-
-      <div class="menu-title">
-      </div>
-      
-      <!-- Menu -->
-      <ul class="vertical menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/locations">Locations</a></li>
-        <li><a href="/articles/how-to-remove-user-name-from-terminal-prompt">Articles</a></li>
-      </ul>
-    </div>
-    <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right"></div>
-    <div class="off-canvas-content" data-off-canvas-content>
-      <div class="header">
-        <div class="title-bar">
-          <div class="title-bar-left">
-            <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
-            <span class="title-bar-title">root4.me</span>
-          </div>
-        </div>
-
-        <div class="header-content">
-          <span class="content">$ sudo whoami</span>
-        </div>
-
-      </div>
-
-      <!--
+<!--
       <div class="row">
       <div class="large-12 columns">
       <input type="search" placeholder="Search .. need to put some padding on top" id="search" >
     </div>
   </div>
 -->
-      <input type="hidden" id="ip" value="{{ ip }}" />
+<input type="hidden" id="ip" value="{{ ip }}" />
 
-      <div class="row">
-        <div class="small-12 medium-12 large-4 columns">
+<div class="row">
+  <div class="small-12 medium-12 large-4 columns">
 
-          <section class="weather-overview">
-            <div class="card">
-              <div class="city" id="wo_city">city n/a</div>
-              <div class="temperature">
-                <span id="wo_temperature" class="temperatureValue">temperature  n/a</span>
-              </div>
-              <div>
-                <span id="wo_weather">weatehr  n/a</span>
-              </div>
-              <div class="additionaInfo">
-                <span id="wo_wind">wind  n/a</span>
-              </div>
-
-              <div id="wo_forecast">
-
-
-              </div>
-            </div>
-          </section>
-          <br />
+    <section class="weather-overview">
+      <div class="card">
+        <div class="city" id="wo_city">city n/a</div>
+        <div class="temperature">
+          <span id="wo_temperature" class="temperatureValue">temperature  n/a</span>
+        </div>
+        <div>
+          <span id="wo_weather">weatehr  n/a</span>
+        </div>
+        <div class="additionaInfo">
+          <span id="wo_wind">wind  n/a</span>
         </div>
 
-        <div class="small-12 medium-12 large-8 columns">
-          <section id="news-article-feed" class="article-feed">
-            <!--
+        <div id="wo_forecast">
+
+
+        </div>
+      </div>
+    </section>
+    <br />
+  </div>
+
+  <div class="small-12 medium-12 large-8 columns">
+    <section id="news-article-feed" class="article-feed">
+      <!--
       <a href="http://static.latimes.com/oxycontin-part1" target="_blank">
       <div class="card-with-leftborder">
       <h5 class="title">OxyContin's 12-hour problem</h5>
@@ -74,27 +44,7 @@
     </div>
   </a>
 -->
-          </section>
-        </div>
-
-      </div>
-
-      <!-- footer -->
-      <footer class="footer">
-        <div class="row">
-          <div class="column large-8 large-centered">
-            <br />
-            <p class="links">
-              <a href="/">Home</a>
-              <a href="#">Top</a>
-            </p>
-            <p class="copywrite">&copy; 2016 .... Hand crafted with care. Copy, Right &#9786; </p>
-          </div>
-        </div>
-      </footer>
-      <!-- end footer -->
-
-    </div>
-
+    </section>
   </div>
+
 </div>

@@ -1,44 +1,57 @@
-
-<h3>locations</h3>
+<div class="row">
+  <div class="small-12 medium-12 large-12 columns">
+    <section class="crud-title">
+      Where have i been
+    </section>
+  </div>
+</div>
 
 <div class="row">
-  <div class="large-2 columns">
-    Longitude
-  </div>
-  <div class="large-2 columns">
-    Latitude
-  </div>
-  <div class="large-3 columns">
-    Captured
-  </div>
-  <div class="large-3 columns">
-    Created
-  </div>
-  <div class="large-2 columns">
-
+  <div class="small-12 columns">
+    <div class="card">
+      <div class="row">
+        <div class="large-2 columns">
+          Longitude
+        </div>
+        <div class="large-2 columns">
+          Latitude
+        </div>
+        <div class="large-3 columns">
+          Captured
+        </div>
+        <div class="large-3 columns">
+          Created
+        </div>
+        <div class="large-2 columns">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div id="editableRows">
   {{#each locations}}
-  {{> location}}
+    {{> location}}
   {{/each}}
 </div>
 
-
-<div id="addRow" class="row">
-  <div class="large-2 columns">
-    <input type="text" name="txtLongitude" id="txtLongitude" data-name="longitude" />
-  </div>
-  <div class="large-2 columns">
-    <input type="text" name="txtLatitude" id="txtLatitude" data-name="latitude" />
-  </div>
-  <div class="large-3 columns">
-    <input type="text" name="txtCaptured" id="txtCaptured" data-name="captured" />
-  </div>
-  <div class="large-3 columns">
-    <input type="button" class="button" id="addButton" value="save"/>
-  </div>
-  <div class="large-2 columns">
+<div class="row">
+  <div class="small-12 columns">
+    <div class="card">
+      <div id="addRow" class="row">
+        <div class="large-3 columns">
+          <input type="text" name="txtLongitude" id="txtLongitude" data-name="longitude" placeholder="longitude" />
+        </div>
+        <div class="large-3 columns">
+          <input type="text" name="txtLatitude" id="txtLatitude" data-name="latitude" placeholder="latitude" />
+        </div>
+        <div class="large-3 columns">
+          <input type="text" name="txtCaptured" id="txtCaptured" data-name="captured" placeholder="date & time" />
+        </div>
+        <div class="large-3 columns">
+          <input type="button" class="button small-12" id="addButton" value="save" />
+        </div>
+      </div>
+    </div>
   </div>
 </div>

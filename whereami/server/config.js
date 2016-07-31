@@ -10,7 +10,8 @@ var local = {
   database : {
     server: 'localhost',
     port: 27017,
-    db: 'whereamiDb'
+    locationDb: 'whereamiDb',
+    tasksDb: 'tasksDb'
   }
 };
 
@@ -21,7 +22,8 @@ var production = {
   database : {
     server: 'localhost',
     port: 27017,
-    db: 'prod_whereamiDb'
+    locationDb: 'prod_whereamiDb',
+    tasksDb: 'prod_tasksDb'
   }
 };
 
