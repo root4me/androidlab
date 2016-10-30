@@ -7,6 +7,7 @@ var router = express.Router();
 
 // Include the data helper
 var locationsdata = require('../data/locations');
+var authenticator = require('./authenticator');
 
 router.get('/', function(req, res, next) {
 
@@ -17,6 +18,7 @@ router.get('/', function(req, res, next) {
       scripts : [{'script' : '/javascripts/locations.js'}]
     } );
   });
+
 });
 
 router.post('/', function(req,res,next){

@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var exphbs  = require('express-handlebars');
 
 var routes = require('./routes/index');
 var locationsapi = require('./routes/locationsApi');
@@ -11,13 +12,11 @@ var locations = require('./routes/locations');
 var todo = require('./routes/2do');
 var todoapi = require('./routes/2doApi');
 
-var exphbs  = require('express-handlebars');
-
 var app = express();
 
 var hbs = exphbs.create({
-        defaultLayout: 'main'
- });
+  defaultLayout: 'main'
+});
 
 
 // view engine setup
@@ -37,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 if (app.get('env') === 'development')
 {
-//  console.log("setting static path for bower folder")
+  //  console.log("setting static path for bower folder")
   app.use('/bower_components',express.static(path.join(__dirname, 'bower_components')));
 }
 

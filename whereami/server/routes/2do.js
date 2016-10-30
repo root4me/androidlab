@@ -7,8 +7,9 @@ var router = express.Router();
 
 // Include the data helper
 var tododata = require('../data/2do');
+var authenticator = require('./authenticator');
 
-router.get('/', function(req, res, next) {
+router.get('/', authenticator.isAuthenticatedWeb, function(req, res, next) {
 
   tododata.getAll(function(err,data){
     // Going to get an array of rows from getAll. wrap it around a selector before supplying it to the view
@@ -20,7 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/', function(req,res,next){
+router.post('/', authenticator.isAuthenticatedWeb, function(req,res,next){
 
   var dat = {
     task : req.body.task,

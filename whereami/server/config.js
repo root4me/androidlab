@@ -12,7 +12,9 @@ var local = {
     port: 27017,
     locationDb: 'whereamiDb',
     tasksDb: 'tasksDb'
-  }
+  },
+  tokenSecret: 'need to change this for production',
+  tokenExpiresInMin: 2
 };
 
 var production = {
@@ -24,7 +26,9 @@ var production = {
     port: 27017,
     locationDb: 'prod_whereamiDb',
     tasksDb: 'prod_tasksDb'
-  }
+  },
+  tokenSecret: 'need to change this for production',
+  tokenExpiresInMin: 60
 };
 
 if (process.env.NODE_ENV === 'development') {
