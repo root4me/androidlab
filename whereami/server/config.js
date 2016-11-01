@@ -11,7 +11,8 @@ var local = {
     server: 'localhost',
     port: 27017,
     locationDb: 'whereamiDb',
-    tasksDb: 'tasksDb'
+    tasksDb: 'tasksDb',
+    smarthomeDb: 'smarthomeDb'
   },
   tokenSecret: 'need to change this for production',
   tokenExpiresInMin: 2
@@ -25,7 +26,8 @@ var production = {
     server: 'localhost',
     port: 27017,
     locationDb: 'prod_whereamiDb',
-    tasksDb: 'prod_tasksDb'
+    tasksDb: 'prod_tasksDb',
+    smarthomeDb: 'prod_smarthomeDb'
   },
   tokenSecret: 'need to change this for production',
   tokenExpiresInMin: 60

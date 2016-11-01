@@ -11,6 +11,8 @@ var locationsapi = require('./routes/locationsApi');
 var locations = require('./routes/locations');
 var todo = require('./routes/2do');
 var todoapi = require('./routes/2doApi');
+var smarthome = require('./routes/smarthome');
+var smarthomeapi = require('./routes/smarthomeApi');
 
 var app = express();
 
@@ -45,6 +47,8 @@ app.use('/api/locations', locationsapi);
 app.use('/locations', locations);
 app.use('/2do', todo);
 app.use('/api/2do', todoapi);
+app.use('/sh/', smarthome);
+app.use('/api/sh', smarthomeapi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
