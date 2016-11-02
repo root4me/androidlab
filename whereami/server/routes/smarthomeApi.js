@@ -42,24 +42,28 @@ router.get('/gd', authenticator.isAuthenticatedWeb, function(req, res, next) {
 // Device will be doing so inside the network.
 // No need to make this call over internet and hence no authentication necessary.
 // Instead, we will do IP based restrictions
-route.put('/gd', function(req, res, next) {
+router.post('/gd', function(req, res, next) {
   // Check if call orignated from a specific IP
   // Save status to db
   console.log(req.ip);
   console.log(req.ips);
   console.log((req.ip).replace('::ffff:', ''));
 
+  console.log(req.body.status);
+
   console.log("{ device: 'Garage Door Monitor',  status: 'open',  updated: '10/30/2016 10:00:00 AM' }");
+
+  res.send({ device: 'Garage Door Monitor',  status: 'open',  updated: '10/30/2016 10:00:00 AM' });
 
 });
 
 // Open the garage
-route.post('/gd/open', authenticator.isAuthenticatedWeb, function(req, res, next) {
+router.post('/gd/open', authenticator.isAuthenticatedWeb, function(req, res, next) {
   // Open the garage if it is closed. That logic should be in the device (not in the server)
 });
 
 // Open the garage
-route.post('/gd/close', authenticator.isAuthenticatedWeb, function(req, res, next) {
+router.post('/gd/close', authenticator.isAuthenticatedWeb, function(req, res, next) {
   // Close the garage if it is open. That logic should be in the device (not in the server)
 });
 
