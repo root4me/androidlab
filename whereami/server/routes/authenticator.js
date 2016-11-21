@@ -47,13 +47,17 @@ var isAuthenticatedApi = function(req, res, next) {
 
   var token = req.body.token || req.query.token || req.headers['x-access-token'] || req.cookies.token;
 
+  console.log("token : " + token);
+
   if (token) {
     jwt.verify(token, config.tokenSecret, function(err, decoded) {
+      console.log("inside jwt verify");
       if (err) {
         console.log(err);
         return res.json({
-          success: false,
-          message: 'Failed to authenticate token.'
+          authenticated: false,
+          errorCode: 401,
+          message: 'Failed to authenticate token.',
         });
       } else {
         // if everything is good, save to request for use in other routes
@@ -63,8 +67,12 @@ var isAuthenticatedApi = function(req, res, next) {
       }
     });
   } else {
-    return res.status(403).send({
-      success: false,
+
+    console.log("inside no token");
+
+    return res.status(401).send({
+      authenticated: false,
+      errorCode: 401,
       message: 'No token provided.'
     });
   }
@@ -76,7 +84,7 @@ var authenticateWeb = function(req, res, next) {
   var pwd = req.body.pwd;
   var originalUrl = req.body.originalUrl;
 
-  if ((user === 'admin') && (pwd = 'pass')) {
+  if ((user === 'admin') && (pwd == 'pass')) {
     // success criteria . Set token
     var token = jwt.sign({
       user: 'admin',

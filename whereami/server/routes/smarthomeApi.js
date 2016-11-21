@@ -21,17 +21,21 @@ var authenticator = require('./authenticator');
 */
 
 // Get current status of garage door
-router.get('/gd', authenticator.isAuthenticatedWeb, function(req, res, next) {
+router.get('/gd', authenticator.isAuthenticatedApi, function(req, res, next) {
+
+  console.log("Inside get");
 
   var request = client.get("http://10.0.0.11/", function(data, response) {
     console.log(JSON.parse(data));
     var d = JSON.parse(data);
     d.updated = (new Date()).toLocaleString();
+    d.authenticated = true;
     res.send(d);
   });
 
   request.on('error', function(err) {
     res.send({
+      authenticated: true,
       status: 'unknown',
       updated: (new Date()).toLocaleString()
     });
@@ -53,7 +57,11 @@ router.post('/gd', function(req, res, next) {
 
   console.log("{ device: 'Garage Door Monitor',  status: 'open',  updated: '10/30/2016 10:00:00 AM' }");
 
-  res.send({ device: 'Garage Door Monitor',  status: 'open',  updated: '10/30/2016 10:00:00 AM' });
+  res.send({
+    device: 'Garage Door Monitor',
+    status: 'open',
+    updated: '10/30/2016 10:00:00 AM'
+  });
 
 });
 

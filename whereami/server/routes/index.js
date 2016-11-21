@@ -37,4 +37,8 @@ router.post('/login',authenticator.authenticateWeb, function(req, res, next){
   //res.redirect('/');
 });
 
+router.post('/api/login',authenticator.authenticateApi, function(req, res, next){
+  //res.redirect('/');
+});
+
 module.exports = router;

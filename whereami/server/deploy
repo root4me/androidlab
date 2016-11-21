@@ -1,3 +1,3 @@
 #!/bin/bash
 
-rsync -rv --delete dist ubuntu@10.0.0.8:/home/ubuntu/www/
+rsync -rvu --delete dist ubuntu@10.0.0.10:/home/ubuntu/www/

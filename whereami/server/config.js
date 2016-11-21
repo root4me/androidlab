@@ -15,7 +15,7 @@ var local = {
     smarthomeDb: 'smarthomeDb'
   },
   tokenSecret: 'need to change this for production',
-  tokenExpiresInMin: 2
+  tokenExpiresInMin: 15
 };
 
 var production = {
