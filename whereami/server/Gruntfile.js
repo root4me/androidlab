@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     app: 'app',
     dist: 'dist',
     srcjs: ['javascripts/*.*', '../bower_components/jquery/dist/jquery.js',
-      '../bower_components/foundation-sites/dist/foundation.js'
+      '../bower_components/foundation-sites/dist/js/foundation.js'
     ],
     srcscss: ['scss/*.*'],
     srccss: ['stylesheets/*.*', '../bower_components/foundation-sites/dist/foundation.css'],
