@@ -101,6 +101,28 @@ var getById = function(server, port, dbName, collectionName, id, callback) {
   });
 };
 
+var getByCriteria = function(server, port, dbName, collectionName, criteria, callback) {
+
+  mongo.connect(url(server, port, dbName), function(err, db) {
+
+    if (err !== null) {
+      callback(err, null);
+      return;
+    }
+    //    console.log("Connected to mongodb server");
+    console.log(criteria);
+
+    var collection = db.collection(collectionName);
+
+    collection.find(
+      criteria
+    ).toArray(function(err, docs) {
+      db.close();
+      callback(err, docs);
+    });
+  });
+};
+
 /**
  * [function description]
  * @param  {[type]}   server         [description]
@@ -114,7 +136,7 @@ var getById = function(server, port, dbName, collectionName, id, callback) {
 var insert = function(server, port, dbName, collectionName, data, callback) {
 
   mongo.connect(url(server, port, dbName), function(err, db) {
-    //    console.log("Connected correctly to server");
+    // console.log("Connected correctly to server");
     var collection = db.collection(collectionName);
 
     data.created = Date();
@@ -168,3 +190,4 @@ module.exports.getById = getById;
 module.exports.insert = insert;
 module.exports.update = update;
 module.exports.delete = del;
+module.exports.getByCriteria = getByCriteria;

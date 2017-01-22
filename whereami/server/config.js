@@ -12,7 +12,8 @@ var local = {
     port: 27017,
     locationDb: 'whereamiDb',
     tasksDb: 'tasksDb',
-    smarthomeDb: 'smarthomeDb'
+    smarthomeDb: 'smarthomeDb',
+    userDb: 'userDb'
   },
   tokenSecret: 'need to change this for production',
   tokenExpiresInMin: 15
@@ -27,7 +28,8 @@ var production = {
     port: 27017,
     locationDb: 'prod_whereamiDb',
     tasksDb: 'prod_tasksDb',
-    smarthomeDb: 'prod_smarthomeDb'
+    smarthomeDb: 'prod_smarthomeDb',
+    userDb: 'prod_userDb'
   },
   tokenSecret: 'need to change this for production',
   tokenExpiresInMin: 60
